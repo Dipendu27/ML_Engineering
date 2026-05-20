@@ -30,6 +30,16 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 
 ---
 
+## ✅ Current Status
+
+Day 2 is complete. The project now has:
+
+- `test_env.py` for validating Apple Silicon ML acceleration with PyTorch MPS and Apple MLX.
+- `day2_data_engine.py` for generating synthetic patient biomarker data, imputing missing clinical fields, and filtering high-risk hypertension records.
+- `requirements.txt` with the Day 1 and Day 2 Python dependencies.
+
+---
+
 ## 📂 Project Highlights
 
 ### ⚙️ Hardware Verification (`test_env.py`)
@@ -71,13 +81,18 @@ python day2_data_engine.py
 ## 💻 Local AI Execution & Validation
 
 ```bash
-# 1. Activate isolated Python environment
+# 1. Create and activate isolated Python environment
+python3 -m venv .venv
 source .venv/bin/activate
 
-# 2. Run hardware verification
+# 2. Install Day 1 and Day 2 dependencies
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+
+# 3. Run hardware verification
 python test_env.py
 
-# 3. Run data engineering simulation
+# 4. Run data engineering simulation
 python day2_data_engine.py
 
 # Verify clean git tracking (ignoring .venv)
