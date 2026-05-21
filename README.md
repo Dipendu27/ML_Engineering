@@ -25,7 +25,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 
 - [x] **Day 1:** Environment & Hardware Verification - Configure Python/VS Code and verify Apple MLX plus PyTorch MPS on Apple Silicon.
 - [x] **Day 2:** Data Engineering Foundation - Generate synthetic clinical biomarkers with NumPy and clean/filter patient records with Pandas.
-- [ ] **Day 3:** Multi-Dimensional Matrices & Dot Products - Simulate semantic matching with Apple MLX.
+- [x] **Day 3:** Multi-Dimensional Matrices & Dot Products - Simulate semantic matching with Apple MLX.
 - [ ] **Day 4:** Advanced Data Engineering - Slicing, filtering, and manipulating tabular clinical data.
 - [ ] **Day 5:** Data Engineering Practice - Synthesizing and cleaning mock patient datasets.
 - [ ] **Day 6:** Math Basics - Linear algebra fundamentals and matrices.
@@ -103,11 +103,12 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 
 ## ✅ Current Status
 
-Day 2 is complete. The project now has:
+Day 3 is complete. The project now has:
 
 - `test_env.py` for validating Apple Silicon ML acceleration with PyTorch MPS and Apple MLX.
 - `day2_data_engine.py` for generating synthetic patient biomarker data, imputing missing clinical fields, and filtering high-risk hypertension records.
-- `requirements.txt` with the Day 1 and Day 2 Python dependencies.
+- `day3_vector_math.py` for simulating clinical semantic similarity with dot products and MLX matrix multiplication.
+- `requirements.txt` with the Day 1 through Day 3 Python dependencies.
 
 ## 📂 Project Highlights
 
@@ -147,6 +148,24 @@ python day2_data_engine.py
 
 ---
 
+### 🧮 Clinical Vector Math (`day3_vector_math.py`)
+
+Simulates semantic matching for clinical terms using Apple MLX vectors, dot products, and matrix multiplication. This is the foundation for future embedding search and local RAG retrieval.
+
+```bash
+python day3_vector_math.py
+# --- Day 3: Clinical Semantics & Matrix Engines ---
+#
+# Dot Product (Hypertension vs Blood Pressure): 0.74
+# Dot Product (Hypertension vs Diabetes):       0.17
+#
+# Step 3: MLX Accelerated Patient Diagnosis Matrix (Patients x Diseases):
+# array([[0.779552, 0.204833],
+#        [0.134952, 0.729741]], dtype=float32)
+```
+
+---
+
 ## 💻 Local AI Execution & Validation
 
 ```bash
@@ -154,7 +173,7 @@ python day2_data_engine.py
 python3 -m venv .venv
 source .venv/bin/activate
 
-# 2. Install Day 1 and Day 2 dependencies
+# 2. Install Day 1 through Day 3 dependencies
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 
@@ -163,6 +182,9 @@ python test_env.py
 
 # 4. Run data engineering simulation
 python day2_data_engine.py
+
+# 5. Run clinical vector math simulation
+python day3_vector_math.py
 
 # Verify clean git tracking (ignoring .venv)
 git status
