@@ -26,7 +26,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 - [x] **Day 1:** Environment & Hardware Verification - Configure Python/VS Code and verify Apple MLX plus PyTorch MPS on Apple Silicon.
 - [x] **Day 2:** Data Engineering Foundation - Generate synthetic clinical biomarkers with NumPy and clean/filter patient records with Pandas.
 - [x] **Day 3:** Multi-Dimensional Matrices & Dot Products - Simulate semantic matching with Apple MLX.
-- [ ] **Day 4:** Advanced Data Engineering - Slicing, filtering, and manipulating tabular clinical data.
+- [x] **Day 4:** MLX Autograd & Calculus Engine - Calculate loss values and gradients for backpropagation intuition.
 - [ ] **Day 5:** Data Engineering Practice - Synthesizing and cleaning mock patient datasets.
 - [ ] **Day 6:** Math Basics - Linear algebra fundamentals and matrices.
 - [ ] **Day 7:** Math Basics - Vector dot products and semantic math.
@@ -103,12 +103,13 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 
 ## ✅ Current Status
 
-Day 3 is complete. The project now has:
+Day 4 is complete. The project now has:
 
 - `test_env.py` for validating Apple Silicon ML acceleration with PyTorch MPS and Apple MLX.
 - `day2_data_engine.py` for generating synthetic patient biomarker data, imputing missing clinical fields, and filtering high-risk hypertension records.
 - `day3_vector_math.py` for simulating clinical semantic similarity with dot products and MLX matrix multiplication.
-- `requirements.txt` with the Day 1 through Day 3 Python dependencies.
+- `day4_calculus_engine.py` for validating MLX autograd by calculating a loss function gradient.
+- `requirements.txt` with the Day 1 through Day 4 Python dependencies.
 
 ## 📂 Project Highlights
 
@@ -166,6 +167,20 @@ python day3_vector_math.py
 
 ---
 
+### 📉 MLX Calculus Engine (`day4_calculus_engine.py`)
+
+Uses Apple MLX autograd to calculate the value and gradient of a simple loss function. This connects calculus basics to the mechanism behind neural network backpropagation.
+
+```bash
+python day4_calculus_engine.py
+# --- MLX Calculus Engine ---
+# Input value (x): 2.0
+# Calculated Loss: 17.0
+# Calculated Gradient (Rate of Change): 14.0
+```
+
+---
+
 ## 💻 Local AI Execution & Validation
 
 ```bash
@@ -173,7 +188,7 @@ python day3_vector_math.py
 python3 -m venv .venv
 source .venv/bin/activate
 
-# 2. Install Day 1 through Day 3 dependencies
+# 2. Install Day 1 through Day 4 dependencies
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 
@@ -185,6 +200,9 @@ python day2_data_engine.py
 
 # 5. Run clinical vector math simulation
 python day3_vector_math.py
+
+# 6. Run MLX autograd/calculus simulation
+python day4_calculus_engine.py
 
 # Verify clean git tracking (ignoring .venv)
 git status
