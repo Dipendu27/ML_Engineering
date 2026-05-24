@@ -34,7 +34,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 - [x] **Day 7:** Local Vector Database - Initialize ChromaDB, embed patient profiles, and run semantic retrieval queries.
 - [x] **Day 8:** MLX Backpropagation Engine - Train a simple weight with scalar loss, gradients, and gradient descent.
 - [x] **Day 9:** Matplotlib & Seaborn EDA - Generate clinical summary statistics, distributions, scatter plots, and correlation heatmaps.
-- [ ] **Day 10:** EDA Practice - Cleaning and visualizing messy medical datasets from Kaggle.
+- [x] **Day 10:** Real-World Data Cleaning & EDA - Sanitize messy clinical records, impute missing values, remove outliers, and visualize diagnosis counts.
 
 ## 📊 Phase 2: Classical Machine Learning (Days 11–20)
 
@@ -105,7 +105,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 
 ## ✅ Current Status
 
-Day 9 is complete. The project now has:
+Day 10 is complete. Phase 1 is now complete. The project now has:
 
 - `test_env.py` for validating Apple Silicon ML acceleration with PyTorch MPS and Apple MLX.
 - `day2_data_engine.py` for generating synthetic patient biomarker data, imputing missing clinical fields, and filtering high-risk hypertension records.
@@ -116,10 +116,12 @@ Day 9 is complete. The project now has:
 - `day7_vector_db.py` for initializing a local ChromaDB collection and retrieving semantically similar patient profiles.
 - `day8_calculus_engine.py` for demonstrating MLX autograd, scalar loss calculation, and gradient descent updates.
 - `day9_eda.py` for generating synthetic clinical EDA summaries with Matplotlib and Seaborn visualizations.
+- `day10_real_eda.py` for cleaning messy real-world-style clinical data and visualizing cleaned diagnosis distributions.
 - `Figure_1.png` as the Day 9 EDA dashboard image with an age histogram, BMI/BP scatter plot, and correlation heatmap.
+- `Figure_2.png` as the Day 10 cleaned diagnosis count chart.
 - `healthcare_dataset.csv` as the local source dataset used by the Day 5 and Day 6 scripts.
 - `cleaned_healthcare_data.csv` as the cleaned Day 6 output dataset with serialized patient profiles.
-- `requirements.txt` with the Day 1 through Day 9 Python dependencies.
+- `requirements.txt` with the Day 1 through Day 10 Python dependencies.
 
 ## 📂 Project Highlights
 
@@ -282,6 +284,24 @@ python day9_eda.py
 
 ---
 
+### 🧼 Real-World Data Cleaning EDA (`day10_real_eda.py`)
+
+Simulates a messy Kaggle-style clinical CSV, inspects raw issues, standardizes diagnosis labels, removes impossible age outliers, imputes missing age and blood pressure values, and saves a cleaned diagnosis distribution chart.
+
+![Day 10 Cleaned Diagnosis Distribution](Figure_2.png)
+
+```bash
+python day10_real_eda.py
+# --- Day 10: Real-World Data Cleaning & EDA ---
+#
+# RAW DATA includes impossible ages, NaNs, and inconsistent diagnosis casing.
+# CLEANED DATA keeps valid patients, standardizes labels, and fills missing values.
+#
+# Generating chart... Saved to: Figure_2.png
+```
+
+---
+
 ## 💻 Local AI Execution & Validation
 
 ```bash
@@ -289,7 +309,7 @@ python day9_eda.py
 python3 -m venv .venv
 source .venv/bin/activate
 
-# 2. Install Day 1 through Day 9 dependencies
+# 2. Install Day 1 through Day 10 dependencies
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 
@@ -319,6 +339,9 @@ python day8_calculus_engine.py
 
 # 11. Run Matplotlib and Seaborn EDA dashboard
 python day9_eda.py
+
+# 12. Run real-world data cleaning and EDA charting
+python day10_real_eda.py
 
 # Verify clean git tracking (ignoring .venv)
 git status
