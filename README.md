@@ -46,7 +46,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 - [x] **Day 15:** Gradient Boosting - Train an XGBoost diabetes-risk classifier with sequential tree boosting.
 - [x] **Day 16:** Advanced XGBoost - Tune gradient boosting hyperparameters with randomized cross-validation.
 - [x] **Day 17:** Unsupervised Learning - Segment unlabeled patients with K-Means clustering.
-- [ ] **Day 18:** Unsupervised Learning - Principal Component Analysis (PCA).
+- [x] **Day 18:** Unsupervised Learning - Reduce high-dimensional medical data with Principal Component Analysis (PCA).
 - [ ] **Day 19:** Model Evaluation - Mastering Precision, Recall, F1-score, and ROC-AUC.
 - [ ] **Day 20:** ML Pipelines - Building an end-to-end scaling and training pipeline.
 
@@ -106,7 +106,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 
 ## ✅ Current Status
 
-Day 17 is complete. Phase 2 now includes supervised learning, ensemble methods, gradient boosting, and unsupervised patient segmentation. The project now has:
+Day 18 is complete. Phase 2 now includes supervised learning, ensemble methods, gradient boosting, clustering, and dimensionality reduction. The project now has:
 
 - `day1_test_env.py` for validating Apple Silicon ML acceleration with PyTorch MPS and Apple MLX.
 - `day2_data_engine.py` for generating synthetic patient biomarker data, imputing missing clinical fields, and filtering high-risk hypertension records.
@@ -125,14 +125,16 @@ Day 17 is complete. Phase 2 now includes supervised learning, ensemble methods, 
 - `day15_xgboost_classifier.py` for training an XGBoost diabetes-risk classifier and testing an edge-case patient.
 - `day16_xgboost_tuning.py` for tuning an XGBoost regressor with randomized search and cross-validation.
 - `day17_kmeans_clustering.py` for segmenting unlabeled patients into discovered clinical clusters with K-Means.
+- `day18_pca_reduction.py` for reducing 30-dimensional medical measurements into two principal components for visualization.
 - `Figure_1.png` as the Day 9 EDA dashboard image with an age histogram, BMI/BP scatter plot, and correlation heatmap.
 - `Figure_2.png` as the Day 10 cleaned diagnosis count chart.
 - `Decision_Tree.jpeg` and `Figure_3.png` as Day 13 decision tree visualization artifacts.
 - `Figure_4.png` as the Day 14 random forest feature-importance chart.
 - `Figure_5.png` as the Day 17 K-Means patient segmentation chart.
+- `Figure_6.png` as the Day 18 PCA dimensionality-reduction chart.
 - `healthcare_dataset.csv` as the local source dataset used by the Day 5 and Day 6 scripts.
 - `cleaned_healthcare_data.csv` as the cleaned Day 6 output dataset with serialized patient profiles.
-- `requirements.txt` with the Day 1 through Day 17 Python dependencies.
+- `requirements.txt` with the Day 1 through Day 18 Python dependencies.
 
 ## 📂 Project Highlights
 
@@ -440,6 +442,24 @@ python day17_kmeans_clustering.py
 
 ---
 
+### 🧬 PCA Dimensionality Reduction (`day18_pca_reduction.py`)
+
+Loads Scikit-learn's breast cancer dataset, scales 30 tumor-measurement features, compresses them into two principal components, reports retained variance, and saves a 2D diagnosis visualization.
+
+![Day 18 PCA Dimensionality Reduction](Figure_6.png)
+
+```bash
+python day18_pca_reduction.py
+# --- Day 18: Dimensionality Reduction with PCA ---
+#
+# Loaded Dataset Shape: 569 patients with 30 distinct dimensions.
+# PCA successfully reduced 30 dimensions to 2.
+# The new 2D graph retains 63.24% of the original complex information.
+# Saved PCA visualization to: Figure_6.png
+```
+
+---
+
 ## 💻 Local AI Execution & Validation
 
 ```bash
@@ -447,7 +467,7 @@ python day17_kmeans_clustering.py
 python3 -m venv .venv
 source .venv/bin/activate
 
-# 2. Install Day 1 through Day 17 dependencies
+# 2. Install Day 1 through Day 18 dependencies
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 
@@ -504,6 +524,9 @@ python day16_xgboost_tuning.py
 
 # 19. Run K-Means patient clustering
 python day17_kmeans_clustering.py
+
+# 20. Run PCA dimensionality reduction
+python day18_pca_reduction.py
 
 # Verify clean git tracking (ignoring .venv)
 git status
