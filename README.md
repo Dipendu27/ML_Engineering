@@ -44,7 +44,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 - [x] **Day 13:** Decision Trees - Train an interpretable priority follow-up classifier and visualize its split rules.
 - [x] **Day 14:** Random Forests - Train an ensemble classifier for patient readmission and inspect feature importance.
 - [x] **Day 15:** Gradient Boosting - Train an XGBoost diabetes-risk classifier with sequential tree boosting.
-- [ ] **Day 16:** Advanced XGBoost - Training models on tabular data.
+- [x] **Day 16:** Advanced XGBoost - Tune gradient boosting hyperparameters with randomized cross-validation.
 - [ ] **Day 17:** Unsupervised Learning - Implementing K-Means clustering.
 - [ ] **Day 18:** Unsupervised Learning - Principal Component Analysis (PCA).
 - [ ] **Day 19:** Model Evaluation - Mastering Precision, Recall, F1-score, and ROC-AUC.
@@ -106,7 +106,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 
 ## ✅ Current Status
 
-Day 15 is complete. Phase 2 now includes regression, logistic classification, decision trees, random forest ensembles, and XGBoost gradient boosting. The project now has:
+Day 16 is complete. Phase 2 now includes regression, logistic classification, decision trees, random forest ensembles, XGBoost classification, and XGBoost hyperparameter tuning. The project now has:
 
 - `day1_test_env.py` for validating Apple Silicon ML acceleration with PyTorch MPS and Apple MLX.
 - `day2_data_engine.py` for generating synthetic patient biomarker data, imputing missing clinical fields, and filtering high-risk hypertension records.
@@ -123,13 +123,14 @@ Day 15 is complete. Phase 2 now includes regression, logistic classification, de
 - `day13_decision_trees.py` for training a Scikit-learn decision tree classifier and visualizing the learned clinical split logic.
 - `day14_random_forest.py` for training a Scikit-learn random forest readmission classifier and plotting feature importances.
 - `day15_xgboost_classifier.py` for training an XGBoost diabetes-risk classifier and testing an edge-case patient.
+- `day16_xgboost_tuning.py` for tuning an XGBoost regressor with randomized search and cross-validation.
 - `Figure_1.png` as the Day 9 EDA dashboard image with an age histogram, BMI/BP scatter plot, and correlation heatmap.
 - `Figure_2.png` as the Day 10 cleaned diagnosis count chart.
 - `Decision_Tree.jpeg` and `Figure_3.png` as Day 13 decision tree visualization artifacts.
 - `Figure_4.png` as the Day 14 random forest feature-importance chart.
 - `healthcare_dataset.csv` as the local source dataset used by the Day 5 and Day 6 scripts.
 - `cleaned_healthcare_data.csv` as the cleaned Day 6 output dataset with serialized patient profiles.
-- `requirements.txt` with the Day 1 through Day 15 Python dependencies.
+- `requirements.txt` with the Day 1 through Day 16 Python dependencies.
 
 ## 📂 Project Highlights
 
@@ -402,6 +403,22 @@ brew install libomp
 
 ---
 
+### 🎛️ XGBoost Hyperparameter Tuning (`day16_xgboost_tuning.py`)
+
+Generates synthetic treatment-cost data, trains a baseline `XGBRegressor`, then uses `RandomizedSearchCV` with cross-validation to find stronger hyperparameters and reduce average prediction error.
+
+```bash
+python day16_xgboost_tuning.py
+# --- Day 16: Advanced XGBoost & Hyperparameter Tuning ---
+#
+# Baseline Error: Off by $2,347.03 per patient on average.
+# Best parameters: n_estimators=100, max_depth=3, learning_rate=0.05
+# Tuned Model Error: Off by $2,134.00 per patient on average.
+# Financial Impact: Tuning saved $213.03 of error per prediction.
+```
+
+---
+
 ## 💻 Local AI Execution & Validation
 
 ```bash
@@ -409,7 +426,7 @@ brew install libomp
 python3 -m venv .venv
 source .venv/bin/activate
 
-# 2. Install Day 1 through Day 15 dependencies
+# 2. Install Day 1 through Day 16 dependencies
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 
@@ -460,6 +477,9 @@ python day14_random_forest.py
 
 # 17. Run XGBoost diabetes risk classification
 python day15_xgboost_classifier.py
+
+# 18. Run XGBoost hyperparameter tuning
+python day16_xgboost_tuning.py
 
 # Verify clean git tracking (ignoring .venv)
 git status
