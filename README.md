@@ -15,7 +15,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 | **Core ML Engines** | Apple MLX, PyTorch (Metal Performance Shaders) |
 | **Data Engineering** | Python 3.11, NumPy, Pandas |
 | **Data Visualization** | Matplotlib, Seaborn |
-| **Classical ML** | Scikit-learn |
+| **Classical ML** | Scikit-learn, XGBoost |
 | **Vector Database** | ChromaDB |
 | **Environment Management** | Python `venv`, pip requirements |
 | **Editor** | VS Code (with Python & Jupyter extensions) |
@@ -43,7 +43,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 - [x] **Day 12:** Logistic Regression - Train a binary hypertension classifier and inspect confusion matrix errors.
 - [x] **Day 13:** Decision Trees - Train an interpretable priority follow-up classifier and visualize its split rules.
 - [x] **Day 14:** Random Forests - Train an ensemble classifier for patient readmission and inspect feature importance.
-- [ ] **Day 15:** Gradient Boosting - Introduction to XGBoost.
+- [x] **Day 15:** Gradient Boosting - Train an XGBoost diabetes-risk classifier with sequential tree boosting.
 - [ ] **Day 16:** Advanced XGBoost - Training models on tabular data.
 - [ ] **Day 17:** Unsupervised Learning - Implementing K-Means clustering.
 - [ ] **Day 18:** Unsupervised Learning - Principal Component Analysis (PCA).
@@ -106,7 +106,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 
 ## ✅ Current Status
 
-Day 14 is complete. Phase 2 now includes regression, logistic classification, decision trees, and random forest ensembles. The project now has:
+Day 15 is complete. Phase 2 now includes regression, logistic classification, decision trees, random forest ensembles, and XGBoost gradient boosting. The project now has:
 
 - `day1_test_env.py` for validating Apple Silicon ML acceleration with PyTorch MPS and Apple MLX.
 - `day2_data_engine.py` for generating synthetic patient biomarker data, imputing missing clinical fields, and filtering high-risk hypertension records.
@@ -122,13 +122,14 @@ Day 14 is complete. Phase 2 now includes regression, logistic classification, de
 - `day12_logistic_regression.py` for training a Scikit-learn logistic regression classifier and analyzing true/false positives and negatives.
 - `day13_decision_trees.py` for training a Scikit-learn decision tree classifier and visualizing the learned clinical split logic.
 - `day14_random_forest.py` for training a Scikit-learn random forest readmission classifier and plotting feature importances.
+- `day15_xgboost_classifier.py` for training an XGBoost diabetes-risk classifier and testing an edge-case patient.
 - `Figure_1.png` as the Day 9 EDA dashboard image with an age histogram, BMI/BP scatter plot, and correlation heatmap.
 - `Figure_2.png` as the Day 10 cleaned diagnosis count chart.
 - `Decision_Tree.jpeg` and `Figure_3.png` as Day 13 decision tree visualization artifacts.
 - `Figure_4.png` as the Day 14 random forest feature-importance chart.
 - `healthcare_dataset.csv` as the local source dataset used by the Day 5 and Day 6 scripts.
 - `cleaned_healthcare_data.csv` as the cleaned Day 6 output dataset with serialized patient profiles.
-- `requirements.txt` with the Day 1 through Day 14 Python dependencies.
+- `requirements.txt` with the Day 1 through Day 15 Python dependencies.
 
 ## 📂 Project Highlights
 
@@ -378,6 +379,29 @@ python day14_random_forest.py
 
 ---
 
+### ⚡ XGBoost Classifier (`day15_xgboost_classifier.py`)
+
+Generates synthetic diabetes-risk data, trains an `XGBClassifier` with sequential gradient-boosted trees, evaluates the classifier, and runs inference on an edge-case patient with high blood sugar and BMI.
+
+```bash
+python day15_xgboost_classifier.py
+# --- Day 15: XGBoost Classifier (Diabetes Risk Prediction) ---
+#
+# Dataset: 238 patients diagnosed out of 1500.
+# XGBoost Accuracy: 83.67%
+# Healthy f1-score: 0.91 | Diabetic f1-score: 0.20
+# Prediction: Diabetic Risk
+# AI Confidence (Probability): 64.4%
+```
+
+On macOS, XGBoost also needs the OpenMP runtime:
+
+```bash
+brew install libomp
+```
+
+---
+
 ## 💻 Local AI Execution & Validation
 
 ```bash
@@ -385,9 +409,12 @@ python day14_random_forest.py
 python3 -m venv .venv
 source .venv/bin/activate
 
-# 2. Install Day 1 through Day 14 dependencies
+# 2. Install Day 1 through Day 15 dependencies
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
+
+# macOS only: install the OpenMP runtime required by XGBoost
+brew install libomp
 
 # 3. Run hardware verification
 python day1_test_env.py
@@ -430,6 +457,9 @@ python day13_decision_trees.py
 
 # 16. Run random forest hospital readmission classification
 python day14_random_forest.py
+
+# 17. Run XGBoost diabetes risk classification
+python day15_xgboost_classifier.py
 
 # Verify clean git tracking (ignoring .venv)
 git status
