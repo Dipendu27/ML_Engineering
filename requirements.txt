@@ -28,6 +28,7 @@ httptools==0.7.1
 httpx==0.28.1
 huggingface_hub==1.16.1
 idna==3.16
+imbalanced-learn==0.14.1
 importlib_resources==7.1.0
 Jinja2==3.1.6
 joblib==1.5.3
@@ -85,6 +86,7 @@ seaborn==0.13.2
 sentence-transformers==5.5.1
 shellingham==1.5.4
 six==1.17.0
+sklearn-compat==0.1.5
 sympy==1.14.0
 tenacity==9.1.4
 threadpoolctl==3.6.0
