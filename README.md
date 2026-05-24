@@ -41,7 +41,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 
 - [x] **Day 11:** Linear Regression - Train a continuous blood pressure predictor with Scikit-learn.
 - [x] **Day 12:** Logistic Regression - Train a binary hypertension classifier and inspect confusion matrix errors.
-- [ ] **Day 13:** Decision Trees - Learning how tree-based models make splits.
+- [x] **Day 13:** Decision Trees - Train an interpretable priority follow-up classifier and visualize its split rules.
 - [ ] **Day 14:** Random Forests - Predicting categorical outcomes, such as patient readmission.
 - [ ] **Day 15:** Gradient Boosting - Introduction to XGBoost.
 - [ ] **Day 16:** Advanced XGBoost - Training models on tabular data.
@@ -106,7 +106,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 
 ## ✅ Current Status
 
-Day 12 is complete. Phase 2 now includes both regression and classification foundations. The project now has:
+Day 13 is complete. Phase 2 now includes regression, logistic classification, and interpretable tree-based classification. The project now has:
 
 - `test_env.py` for validating Apple Silicon ML acceleration with PyTorch MPS and Apple MLX.
 - `day2_data_engine.py` for generating synthetic patient biomarker data, imputing missing clinical fields, and filtering high-risk hypertension records.
@@ -120,11 +120,13 @@ Day 12 is complete. Phase 2 now includes both regression and classification foun
 - `day10_real_eda.py` for cleaning messy real-world-style clinical data and visualizing cleaned diagnosis distributions.
 - `day11_linear_regression.py` for training and evaluating a Scikit-learn linear regression model on synthetic patient blood pressure data.
 - `day12_logistic_regression.py` for training a Scikit-learn logistic regression classifier and analyzing true/false positives and negatives.
+- `day13_decision_trees.py` for training a Scikit-learn decision tree classifier and visualizing the learned clinical split logic.
 - `Figure_1.png` as the Day 9 EDA dashboard image with an age histogram, BMI/BP scatter plot, and correlation heatmap.
 - `Figure_2.png` as the Day 10 cleaned diagnosis count chart.
+- `Decision_Tree.jpeg` and `Figure_3.png` as Day 13 decision tree visualization artifacts.
 - `healthcare_dataset.csv` as the local source dataset used by the Day 5 and Day 6 scripts.
 - `cleaned_healthcare_data.csv` as the cleaned Day 6 output dataset with serialized patient profiles.
-- `requirements.txt` with the Day 1 through Day 12 Python dependencies.
+- `requirements.txt` with the Day 1 through Day 13 Python dependencies.
 
 ## 📂 Project Highlights
 
@@ -339,6 +341,23 @@ python day12_logistic_regression.py
 
 ---
 
+### 🌳 Decision Tree Classifier (`day13_decision_trees.py`)
+
+Generates synthetic clinical follow-up data, trains a `DecisionTreeClassifier` without feature scaling, evaluates priority follow-up classification accuracy, and saves a visual tree diagram showing the model's split logic.
+
+![Day 13 Decision Tree](Decision_Tree.jpeg)
+
+```bash
+python day13_decision_trees.py
+# --- Day 13: Decision Tree Classifier ---
+#
+# Dataset: 49 patients flagged for priority follow-up.
+# Model Accuracy: 100.00%
+# Saved tree visualizations to: Decision_Tree.jpeg and Figure_3.png
+```
+
+---
+
 ## 💻 Local AI Execution & Validation
 
 ```bash
@@ -346,7 +365,7 @@ python day12_logistic_regression.py
 python3 -m venv .venv
 source .venv/bin/activate
 
-# 2. Install Day 1 through Day 12 dependencies
+# 2. Install Day 1 through Day 13 dependencies
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 
@@ -385,6 +404,9 @@ python day11_linear_regression.py
 
 # 14. Run logistic regression hypertension classification
 python day12_logistic_regression.py
+
+# 15. Run decision tree priority follow-up classification
+python day13_decision_trees.py
 
 # Verify clean git tracking (ignoring .venv)
 git status
