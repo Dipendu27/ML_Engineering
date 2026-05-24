@@ -54,7 +54,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 
 - [x] **Day 21:** PyTorch Fundamentals - Create tensors, bridge NumPy arrays, run matrix multiplication, and reshape data.
 - [x] **Day 22:** Multi-Layer Perceptron (MLP) - Build a PyTorch `nn.Module` patient-risk network and run a forward pass.
-- [ ] **Day 23:** Hardware Acceleration - Pushing tensors to the M5 GPU (`device = torch.device("mps")`).
+- [x] **Day 23:** Hardware Acceleration - Move large tensors to Apple Silicon MPS and benchmark CPU vs GPU matrix multiplication.
 - [ ] **Day 24:** Neural Network Training - Forward passes, loss functions, and backpropagation.
 - [ ] **Day 25:** Transformers - Understanding self-attention architectures.
 - [ ] **Day 26:** Hugging Face - Loading pre-trained models via the `transformers` library.
@@ -106,7 +106,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 
 ## ✅ Current Status
 
-Day 22 is complete. Phase 3 now includes PyTorch tensor fundamentals and a first neural network built with `nn.Module`. The project now has:
+Day 23 is complete. Phase 3 now includes PyTorch tensor fundamentals, a first neural network built with `nn.Module`, and Apple Silicon MPS hardware acceleration benchmarking. The project now has:
 
 - `day1_test_env.py` for validating Apple Silicon ML acceleration with PyTorch MPS and Apple MLX.
 - `day2_data_engine.py` for generating synthetic patient biomarker data, imputing missing clinical fields, and filtering high-risk hypertension records.
@@ -130,6 +130,7 @@ Day 22 is complete. Phase 3 now includes PyTorch tensor fundamentals and a first
 - `day20_pipeline_optimization.py` for chaining SMOTE and Random Forest in an imbalanced-learn pipeline with threshold tuning.
 - `day21_pytorch_tensors.py` for creating PyTorch tensors, converting NumPy arrays, running neural-network-style matrix multiplication, and reshaping tensor data.
 - `day22_mlp_network.py` for defining a PyTorch multi-layer perceptron with hidden layers, ReLU activations, sigmoid output, and a mock patient forward pass.
+- `day23_hardware_acceleration.py` for moving large PyTorch tensors to Apple Silicon MPS and comparing synchronized CPU vs GPU matrix multiplication timing.
 - `Figure_1.png` as the Day 9 EDA dashboard image with an age histogram, BMI/BP scatter plot, and correlation heatmap.
 - `Figure_2.png` as the Day 10 cleaned diagnosis count chart.
 - `Decision_Tree.jpeg` and `Figure_3.png` as Day 13 decision tree visualization artifacts.
@@ -139,7 +140,7 @@ Day 22 is complete. Phase 3 now includes PyTorch tensor fundamentals and a first
 - `Figure_7.png` as the Day 19 ROC curve for rare-disease model evaluation.
 - `healthcare_dataset.csv` as the local source dataset used by the Day 5 and Day 6 scripts.
 - `cleaned_healthcare_data.csv` as the cleaned Day 6 output dataset with serialized patient profiles.
-- `requirements.txt` with the Day 1 through Day 22 Python dependencies.
+- `requirements.txt` with the Day 1 through Day 23 Python dependencies.
 
 ## 📂 Project Highlights
 
@@ -546,6 +547,23 @@ python day22_mlp_network.py
 
 ---
 
+### ⚡ Apple Silicon Hardware Acceleration (`day23_hardware_acceleration.py`)
+
+Benchmarks a large PyTorch matrix multiplication on CPU and Apple Silicon MPS, using explicit synchronization so the GPU timing reflects completed work rather than queued operations.
+
+```bash
+python day23_hardware_acceleration.py
+# --- Day 23: Apple Silicon (MPS) Hardware Acceleration ---
+#
+# Hardware Accelerator Found: mps
+# Generating two 10000x10000 matrices...
+# CPU Time: 1.3287 seconds
+# MPS Time: 0.7869 seconds
+# The Apple M5 GPU was 1.69x faster than the CPU!
+```
+
+---
+
 ## 💻 Local AI Execution & Validation
 
 ```bash
@@ -553,7 +571,7 @@ python day22_mlp_network.py
 python3 -m venv .venv
 source .venv/bin/activate
 
-# 2. Install Day 1 through Day 22 dependencies
+# 2. Install Day 1 through Day 23 dependencies
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 
@@ -625,6 +643,9 @@ python day21_pytorch_tensors.py
 
 # 24. Run PyTorch MLP network forward pass
 python day22_mlp_network.py
+
+# 25. Run Apple Silicon MPS hardware acceleration benchmark
+python day23_hardware_acceleration.py
 
 # Verify clean git tracking (ignoring .venv)
 git status
