@@ -108,7 +108,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 
 Day 13 is complete. Phase 2 now includes regression, logistic classification, and interpretable tree-based classification. The project now has:
 
-- `test_env.py` for validating Apple Silicon ML acceleration with PyTorch MPS and Apple MLX.
+- `day1_test_env.py` for validating Apple Silicon ML acceleration with PyTorch MPS and Apple MLX.
 - `day2_data_engine.py` for generating synthetic patient biomarker data, imputing missing clinical fields, and filtering high-risk hypertension records.
 - `day3_vector_math.py` for simulating clinical semantic similarity with dot products and MLX matrix multiplication.
 - `day4_calculus_engine.py` for validating MLX autograd by calculating a loss function gradient.
@@ -130,12 +130,12 @@ Day 13 is complete. Phase 2 now includes regression, logistic classification, an
 
 ## 📂 Project Highlights
 
-### ⚙️ Hardware Verification (`test_env.py`)
+### ⚙️ Day 1 Hardware Verification (`day1_test_env.py`)
 
 A sanity check script ensuring PyTorch communicates with the M5 GPU (MPS) and Apple MLX is successfully initialized.
 
 ```bash
-python test_env.py
+python day1_test_env.py
 # --- Apple Silicon Hardware Test ---
 # ✅ PyTorch is successfully utilizing the M5 GPU (MPS).
 # ✅ Apple MLX is installed and functioning.
@@ -370,7 +370,7 @@ python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 
 # 3. Run hardware verification
-python test_env.py
+python day1_test_env.py
 
 # 4. Run data engineering simulation
 python day2_data_engine.py
