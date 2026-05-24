@@ -14,6 +14,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 | **Version Control** | Git, GitHub, `.gitignore` configuration |
 | **Core ML Engines** | Apple MLX, PyTorch (Metal Performance Shaders) |
 | **Data Engineering** | Python 3.11, NumPy, Pandas |
+| **Data Visualization** | Matplotlib, Seaborn |
 | **Vector Database** | ChromaDB |
 | **Environment Management** | Python `venv`, pip requirements |
 | **Editor** | VS Code (with Python & Jupyter extensions) |
@@ -32,7 +33,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 - [x] **Day 6:** Data Cleaning & RAG Text Serialization - Impute missing BMI values and convert patient rows into natural-language profiles.
 - [x] **Day 7:** Local Vector Database - Initialize ChromaDB, embed patient profiles, and run semantic retrieval queries.
 - [x] **Day 8:** MLX Backpropagation Engine - Train a simple weight with scalar loss, gradients, and gradient descent.
-- [ ] **Day 9:** Exploratory Data Analysis (EDA) - Introduction to Matplotlib and Seaborn.
+- [x] **Day 9:** Matplotlib & Seaborn EDA - Generate clinical summary statistics, distributions, scatter plots, and correlation heatmaps.
 - [ ] **Day 10:** EDA Practice - Cleaning and visualizing messy medical datasets from Kaggle.
 
 ## 📊 Phase 2: Classical Machine Learning (Days 11–20)
@@ -104,7 +105,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 
 ## ✅ Current Status
 
-Day 8 is complete. The project now has:
+Day 9 is complete. The project now has:
 
 - `test_env.py` for validating Apple Silicon ML acceleration with PyTorch MPS and Apple MLX.
 - `day2_data_engine.py` for generating synthetic patient biomarker data, imputing missing clinical fields, and filtering high-risk hypertension records.
@@ -114,9 +115,11 @@ Day 8 is complete. The project now has:
 - `day6_data_cleaning.py` for imputing missing BMI values and creating patient text profiles for future RAG embeddings.
 - `day7_vector_db.py` for initializing a local ChromaDB collection and retrieving semantically similar patient profiles.
 - `day8_calculus_engine.py` for demonstrating MLX autograd, scalar loss calculation, and gradient descent updates.
+- `day9_eda.py` for generating synthetic clinical EDA summaries with Matplotlib and Seaborn visualizations.
+- `Figure_1.png` as the Day 9 EDA dashboard image with an age histogram, BMI/BP scatter plot, and correlation heatmap.
 - `healthcare_dataset.csv` as the local source dataset used by the Day 5 and Day 6 scripts.
 - `cleaned_healthcare_data.csv` as the cleaned Day 6 output dataset with serialized patient profiles.
-- `requirements.txt` with the Day 1 through Day 8 Python dependencies.
+- `requirements.txt` with the Day 1 through Day 9 Python dependencies.
 
 ## 📂 Project Highlights
 
@@ -259,6 +262,26 @@ python day8_calculus_engine.py
 
 ---
 
+### 📊 Clinical EDA Dashboard (`day9_eda.py`)
+
+Generates a synthetic clinical dataset, prints summary statistics, and builds a three-panel EDA dashboard with patient age distribution, BMI versus systolic blood pressure, and a feature correlation heatmap.
+
+![Day 9 EDA Dashboard](Figure_1.png)
+
+```bash
+python day9_eda.py
+# --- Day 9: Healthcare Exploratory Data Analysis (EDA) ---
+#
+# Dataset Summary Statistics:
+#          Age     BMI  Systolic_BP
+# count  496.00  496.00       496.00
+# mean    54.57   28.15       131.20
+#
+# Generating Visualizations... Check your taskbar/dock for new windows!
+```
+
+---
+
 ## 💻 Local AI Execution & Validation
 
 ```bash
@@ -266,7 +289,7 @@ python day8_calculus_engine.py
 python3 -m venv .venv
 source .venv/bin/activate
 
-# 2. Install Day 1 through Day 8 dependencies
+# 2. Install Day 1 through Day 9 dependencies
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 
@@ -293,6 +316,9 @@ python day7_vector_db.py
 
 # 10. Run MLX backpropagation training loop
 python day8_calculus_engine.py
+
+# 11. Run Matplotlib and Seaborn EDA dashboard
+python day9_eda.py
 
 # Verify clean git tracking (ignoring .venv)
 git status

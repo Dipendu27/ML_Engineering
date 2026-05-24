@@ -3,3 +3,5 @@ mlx
 numpy
 pandas
 chromadb
+matplotlib
+seaborn
