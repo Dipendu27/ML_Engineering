@@ -27,7 +27,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 - [x] **Day 2:** Data Engineering Foundation - Generate synthetic clinical biomarkers with NumPy and clean/filter patient records with Pandas.
 - [x] **Day 3:** Multi-Dimensional Matrices & Dot Products - Simulate semantic matching with Apple MLX.
 - [x] **Day 4:** MLX Autograd & Calculus Engine - Calculate loss values and gradients for backpropagation intuition.
-- [ ] **Day 5:** Data Engineering Practice - Synthesizing and cleaning mock patient datasets.
+- [x] **Day 5:** Healthcare Dataset EDA - Load a local healthcare dataset with Pandas and inspect shape, preview rows, and missing values.
 - [ ] **Day 6:** Math Basics - Linear algebra fundamentals and matrices.
 - [ ] **Day 7:** Math Basics - Vector dot products and semantic math.
 - [ ] **Day 8:** Math Basics - Calculus intuition and derivatives for backpropagation.
@@ -103,13 +103,15 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 
 ## ✅ Current Status
 
-Day 4 is complete. The project now has:
+Day 5 is complete. The project now has:
 
 - `test_env.py` for validating Apple Silicon ML acceleration with PyTorch MPS and Apple MLX.
 - `day2_data_engine.py` for generating synthetic patient biomarker data, imputing missing clinical fields, and filtering high-risk hypertension records.
 - `day3_vector_math.py` for simulating clinical semantic similarity with dot products and MLX matrix multiplication.
 - `day4_calculus_engine.py` for validating MLX autograd by calculating a loss function gradient.
-- `requirements.txt` with the Day 1 through Day 4 Python dependencies.
+- `day5_eda.py` for running exploratory data analysis on the local healthcare dataset.
+- `healthcare_dataset.csv` as the local Day 5 dataset used by the EDA script.
+- `requirements.txt` with the Day 1 through Day 5 Python dependencies.
 
 ## 📂 Project Highlights
 
@@ -181,6 +183,25 @@ python day4_calculus_engine.py
 
 ---
 
+### 📊 Healthcare Dataset EDA (`day5_eda.py`)
+
+Loads the local healthcare dataset with Pandas, confirms the record and feature counts, previews patient rows, and checks for missing values before future cleaning and modeling steps.
+
+```bash
+python day5_eda.py
+# --- Healthcare Dataset EDA Engine (Local) ---
+# Dataset successfully loaded from local file!
+#
+# Total Patient Records (Rows): 5110
+# Total Features (Columns): 12
+#
+# --- Missing Data Check ---
+# Warning: Missing data found in the following columns:
+# bmi    201
+```
+
+---
+
 ## 💻 Local AI Execution & Validation
 
 ```bash
@@ -188,7 +209,7 @@ python day4_calculus_engine.py
 python3 -m venv .venv
 source .venv/bin/activate
 
-# 2. Install Day 1 through Day 4 dependencies
+# 2. Install Day 1 through Day 5 dependencies
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 
@@ -203,6 +224,9 @@ python day3_vector_math.py
 
 # 6. Run MLX autograd/calculus simulation
 python day4_calculus_engine.py
+
+# 7. Run healthcare dataset EDA
+python day5_eda.py
 
 # Verify clean git tracking (ignoring .venv)
 git status
