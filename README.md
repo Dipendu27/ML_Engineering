@@ -15,6 +15,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 | **Core ML Engines** | Apple MLX, PyTorch (Metal Performance Shaders) |
 | **Data Engineering** | Python 3.11, NumPy, Pandas |
 | **Data Visualization** | Matplotlib, Seaborn |
+| **Classical ML** | Scikit-learn |
 | **Vector Database** | ChromaDB |
 | **Environment Management** | Python `venv`, pip requirements |
 | **Editor** | VS Code (with Python & Jupyter extensions) |
@@ -38,7 +39,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 
 ## 📊 Phase 2: Classical Machine Learning (Days 11–20)
 
-- [ ] **Day 11:** Linear Regression - Building a continuous predictor model.
+- [x] **Day 11:** Linear Regression - Train a continuous blood pressure predictor with Scikit-learn.
 - [ ] **Day 12:** Logistic Regression - Building a classifier model.
 - [ ] **Day 13:** Decision Trees - Learning how tree-based models make splits.
 - [ ] **Day 14:** Random Forests - Predicting categorical outcomes, such as patient readmission.
@@ -105,7 +106,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 
 ## ✅ Current Status
 
-Day 10 is complete. Phase 1 is now complete. The project now has:
+Day 11 is complete. Phase 2 has started with classical machine learning. The project now has:
 
 - `test_env.py` for validating Apple Silicon ML acceleration with PyTorch MPS and Apple MLX.
 - `day2_data_engine.py` for generating synthetic patient biomarker data, imputing missing clinical fields, and filtering high-risk hypertension records.
@@ -117,11 +118,12 @@ Day 10 is complete. Phase 1 is now complete. The project now has:
 - `day8_calculus_engine.py` for demonstrating MLX autograd, scalar loss calculation, and gradient descent updates.
 - `day9_eda.py` for generating synthetic clinical EDA summaries with Matplotlib and Seaborn visualizations.
 - `day10_real_eda.py` for cleaning messy real-world-style clinical data and visualizing cleaned diagnosis distributions.
+- `day11_linear_regression.py` for training and evaluating a Scikit-learn linear regression model on synthetic patient blood pressure data.
 - `Figure_1.png` as the Day 9 EDA dashboard image with an age histogram, BMI/BP scatter plot, and correlation heatmap.
 - `Figure_2.png` as the Day 10 cleaned diagnosis count chart.
 - `healthcare_dataset.csv` as the local source dataset used by the Day 5 and Day 6 scripts.
 - `cleaned_healthcare_data.csv` as the cleaned Day 6 output dataset with serialized patient profiles.
-- `requirements.txt` with the Day 1 through Day 10 Python dependencies.
+- `requirements.txt` with the Day 1 through Day 11 Python dependencies.
 
 ## 📂 Project Highlights
 
@@ -302,6 +304,22 @@ python day10_real_eda.py
 
 ---
 
+### 📈 Linear Regression Predictor (`day11_linear_regression.py`)
+
+Generates synthetic patient age, BMI, and systolic blood pressure data, splits the dataset into training and testing sets, trains a Scikit-learn `LinearRegression` model, evaluates prediction error, and runs inference for a new patient.
+
+```bash
+python day11_linear_regression.py
+# --- Day 11: Linear Regression Prediction Model ---
+#
+# Data Split: 800 Training Patients | 200 Testing Patients
+# Learned Weights -> Age Multiplier: 0.39, BMI Multiplier: 1.06
+# Evaluation: On average, the model's predictions are off by 3.63 mmHg.
+# Predicted Systolic Blood Pressure: 133.1
+```
+
+---
+
 ## 💻 Local AI Execution & Validation
 
 ```bash
@@ -309,7 +327,7 @@ python day10_real_eda.py
 python3 -m venv .venv
 source .venv/bin/activate
 
-# 2. Install Day 1 through Day 10 dependencies
+# 2. Install Day 1 through Day 11 dependencies
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 
@@ -342,6 +360,9 @@ python day9_eda.py
 
 # 12. Run real-world data cleaning and EDA charting
 python day10_real_eda.py
+
+# 13. Run linear regression blood pressure prediction
+python day11_linear_regression.py
 
 # Verify clean git tracking (ignoring .venv)
 git status
