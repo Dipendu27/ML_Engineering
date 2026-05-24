@@ -31,7 +31,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 - [x] **Day 5:** Healthcare Dataset EDA - Load a local healthcare dataset with Pandas and inspect shape, preview rows, and missing values.
 - [x] **Day 6:** Data Cleaning & RAG Text Serialization - Impute missing BMI values and convert patient rows into natural-language profiles.
 - [x] **Day 7:** Local Vector Database - Initialize ChromaDB, embed patient profiles, and run semantic retrieval queries.
-- [ ] **Day 8:** Math Basics - Calculus intuition and derivatives for backpropagation.
+- [x] **Day 8:** MLX Backpropagation Engine - Train a simple weight with scalar loss, gradients, and gradient descent.
 - [ ] **Day 9:** Exploratory Data Analysis (EDA) - Introduction to Matplotlib and Seaborn.
 - [ ] **Day 10:** EDA Practice - Cleaning and visualizing messy medical datasets from Kaggle.
 
@@ -104,7 +104,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 
 ## ✅ Current Status
 
-Day 7 is complete. The project now has:
+Day 8 is complete. The project now has:
 
 - `test_env.py` for validating Apple Silicon ML acceleration with PyTorch MPS and Apple MLX.
 - `day2_data_engine.py` for generating synthetic patient biomarker data, imputing missing clinical fields, and filtering high-risk hypertension records.
@@ -113,9 +113,10 @@ Day 7 is complete. The project now has:
 - `day5_eda.py` for running exploratory data analysis on the local healthcare dataset.
 - `day6_data_cleaning.py` for imputing missing BMI values and creating patient text profiles for future RAG embeddings.
 - `day7_vector_db.py` for initializing a local ChromaDB collection and retrieving semantically similar patient profiles.
+- `day8_calculus_engine.py` for demonstrating MLX autograd, scalar loss calculation, and gradient descent updates.
 - `healthcare_dataset.csv` as the local source dataset used by the Day 5 and Day 6 scripts.
 - `cleaned_healthcare_data.csv` as the cleaned Day 6 output dataset with serialized patient profiles.
-- `requirements.txt` with the Day 1 through Day 7 Python dependencies.
+- `requirements.txt` with the Day 1 through Day 8 Python dependencies.
 
 ## 📂 Project Highlights
 
@@ -241,6 +242,23 @@ python day7_vector_db.py
 
 ---
 
+### 📐 MLX Backpropagation Engine (`day8_calculus_engine.py`)
+
+Trains a simple one-weight model with MLX autograd. The script computes mean squared error as a scalar loss, reads the gradient with `mx.value_and_grad`, and updates the weight through gradient descent until it approaches the ideal value.
+
+```bash
+python day8_calculus_engine.py
+# --- Day 8: MLX Autograd & Backpropagation Engine ---
+#
+# Starting Training Loop...
+# Epoch 01 | Weight: 1.0000 | Loss: 64.0000 | Gradient (Slope): -32.0000
+# Epoch 10 | Weight: 4.9597 | Loss: 0.0065 | Gradient (Slope): -0.3225
+#
+# Training Complete. The model optimized the weight to: 4.9758 (Ideal is 5.000)
+```
+
+---
+
 ## 💻 Local AI Execution & Validation
 
 ```bash
@@ -248,7 +266,7 @@ python day7_vector_db.py
 python3 -m venv .venv
 source .venv/bin/activate
 
-# 2. Install Day 1 through Day 7 dependencies
+# 2. Install Day 1 through Day 8 dependencies
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 
@@ -272,6 +290,9 @@ python day6_data_cleaning.py
 
 # 9. Run local ChromaDB semantic retrieval
 python day7_vector_db.py
+
+# 10. Run MLX backpropagation training loop
+python day8_calculus_engine.py
 
 # Verify clean git tracking (ignoring .venv)
 git status
