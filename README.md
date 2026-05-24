@@ -45,7 +45,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 - [x] **Day 14:** Random Forests - Train an ensemble classifier for patient readmission and inspect feature importance.
 - [x] **Day 15:** Gradient Boosting - Train an XGBoost diabetes-risk classifier with sequential tree boosting.
 - [x] **Day 16:** Advanced XGBoost - Tune gradient boosting hyperparameters with randomized cross-validation.
-- [ ] **Day 17:** Unsupervised Learning - Implementing K-Means clustering.
+- [x] **Day 17:** Unsupervised Learning - Segment unlabeled patients with K-Means clustering.
 - [ ] **Day 18:** Unsupervised Learning - Principal Component Analysis (PCA).
 - [ ] **Day 19:** Model Evaluation - Mastering Precision, Recall, F1-score, and ROC-AUC.
 - [ ] **Day 20:** ML Pipelines - Building an end-to-end scaling and training pipeline.
@@ -106,7 +106,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 
 ## ✅ Current Status
 
-Day 16 is complete. Phase 2 now includes regression, logistic classification, decision trees, random forest ensembles, XGBoost classification, and XGBoost hyperparameter tuning. The project now has:
+Day 17 is complete. Phase 2 now includes supervised learning, ensemble methods, gradient boosting, and unsupervised patient segmentation. The project now has:
 
 - `day1_test_env.py` for validating Apple Silicon ML acceleration with PyTorch MPS and Apple MLX.
 - `day2_data_engine.py` for generating synthetic patient biomarker data, imputing missing clinical fields, and filtering high-risk hypertension records.
@@ -124,13 +124,15 @@ Day 16 is complete. Phase 2 now includes regression, logistic classification, de
 - `day14_random_forest.py` for training a Scikit-learn random forest readmission classifier and plotting feature importances.
 - `day15_xgboost_classifier.py` for training an XGBoost diabetes-risk classifier and testing an edge-case patient.
 - `day16_xgboost_tuning.py` for tuning an XGBoost regressor with randomized search and cross-validation.
+- `day17_kmeans_clustering.py` for segmenting unlabeled patients into discovered clinical clusters with K-Means.
 - `Figure_1.png` as the Day 9 EDA dashboard image with an age histogram, BMI/BP scatter plot, and correlation heatmap.
 - `Figure_2.png` as the Day 10 cleaned diagnosis count chart.
 - `Decision_Tree.jpeg` and `Figure_3.png` as Day 13 decision tree visualization artifacts.
 - `Figure_4.png` as the Day 14 random forest feature-importance chart.
+- `Figure_5.png` as the Day 17 K-Means patient segmentation chart.
 - `healthcare_dataset.csv` as the local source dataset used by the Day 5 and Day 6 scripts.
 - `cleaned_healthcare_data.csv` as the cleaned Day 6 output dataset with serialized patient profiles.
-- `requirements.txt` with the Day 1 through Day 16 Python dependencies.
+- `requirements.txt` with the Day 1 through Day 17 Python dependencies.
 
 ## 📂 Project Highlights
 
@@ -419,6 +421,25 @@ python day16_xgboost_tuning.py
 
 ---
 
+### 🧩 K-Means Patient Clustering (`day17_kmeans_clustering.py`)
+
+Generates unlabeled clinical vitals, scales the features, uses `KMeans` to discover three hidden patient segments, summarizes each cluster's average vitals, and saves a 2D segmentation chart.
+
+![Day 17 K-Means Patient Segmentation](Figure_5.png)
+
+```bash
+python day17_kmeans_clustering.py
+# --- Day 17: Unsupervised Learning (K-Means Clustering) ---
+#
+# Received raw data for 450 patients. No diagnoses provided!
+# Cluster 0: Age 70.5 | BMI 25.0 | Blood Pressure 135.7
+# Cluster 1: Age 25.4 | BMI 21.8 | Blood Pressure 110.9
+# Cluster 2: Age 50.4 | BMI 32.1 | Blood Pressure 145.5
+# Saved cluster visualization to: Figure_5.png
+```
+
+---
+
 ## 💻 Local AI Execution & Validation
 
 ```bash
@@ -426,7 +447,7 @@ python day16_xgboost_tuning.py
 python3 -m venv .venv
 source .venv/bin/activate
 
-# 2. Install Day 1 through Day 16 dependencies
+# 2. Install Day 1 through Day 17 dependencies
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 
@@ -480,6 +501,9 @@ python day15_xgboost_classifier.py
 
 # 18. Run XGBoost hyperparameter tuning
 python day16_xgboost_tuning.py
+
+# 19. Run K-Means patient clustering
+python day17_kmeans_clustering.py
 
 # Verify clean git tracking (ignoring .venv)
 git status
