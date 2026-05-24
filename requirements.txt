@@ -2,3 +2,4 @@ torch
 mlx
 numpy
 pandas
+chromadb

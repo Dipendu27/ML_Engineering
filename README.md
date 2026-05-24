@@ -14,6 +14,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 | **Version Control** | Git, GitHub, `.gitignore` configuration |
 | **Core ML Engines** | Apple MLX, PyTorch (Metal Performance Shaders) |
 | **Data Engineering** | Python 3.11, NumPy, Pandas |
+| **Vector Database** | ChromaDB |
 | **Environment Management** | Python `venv`, pip requirements |
 | **Editor** | VS Code (with Python & Jupyter extensions) |
 
@@ -29,7 +30,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 - [x] **Day 4:** MLX Autograd & Calculus Engine - Calculate loss values and gradients for backpropagation intuition.
 - [x] **Day 5:** Healthcare Dataset EDA - Load a local healthcare dataset with Pandas and inspect shape, preview rows, and missing values.
 - [x] **Day 6:** Data Cleaning & RAG Text Serialization - Impute missing BMI values and convert patient rows into natural-language profiles.
-- [ ] **Day 7:** Math Basics - Vector dot products and semantic math.
+- [x] **Day 7:** Local Vector Database - Initialize ChromaDB, embed patient profiles, and run semantic retrieval queries.
 - [ ] **Day 8:** Math Basics - Calculus intuition and derivatives for backpropagation.
 - [ ] **Day 9:** Exploratory Data Analysis (EDA) - Introduction to Matplotlib and Seaborn.
 - [ ] **Day 10:** EDA Practice - Cleaning and visualizing messy medical datasets from Kaggle.
@@ -103,7 +104,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 
 ## ✅ Current Status
 
-Day 6 is complete. The project now has:
+Day 7 is complete. The project now has:
 
 - `test_env.py` for validating Apple Silicon ML acceleration with PyTorch MPS and Apple MLX.
 - `day2_data_engine.py` for generating synthetic patient biomarker data, imputing missing clinical fields, and filtering high-risk hypertension records.
@@ -111,9 +112,10 @@ Day 6 is complete. The project now has:
 - `day4_calculus_engine.py` for validating MLX autograd by calculating a loss function gradient.
 - `day5_eda.py` for running exploratory data analysis on the local healthcare dataset.
 - `day6_data_cleaning.py` for imputing missing BMI values and creating patient text profiles for future RAG embeddings.
+- `day7_vector_db.py` for initializing a local ChromaDB collection and retrieving semantically similar patient profiles.
 - `healthcare_dataset.csv` as the local source dataset used by the Day 5 and Day 6 scripts.
 - `cleaned_healthcare_data.csv` as the cleaned Day 6 output dataset with serialized patient profiles.
-- `requirements.txt` with the Day 1 through Day 6 Python dependencies.
+- `requirements.txt` with the Day 1 through Day 7 Python dependencies.
 
 ## 📂 Project Highlights
 
@@ -220,6 +222,25 @@ python day6_data_cleaning.py
 
 ---
 
+### 🔎 Local Vector Database (`day7_vector_db.py`)
+
+Initializes an in-memory ChromaDB collection, embeds sample patient profiles, and performs semantic search with a natural-language query to simulate the retrieval layer of a future RAG assistant.
+
+```bash
+python day7_vector_db.py
+# --- Day 7: ChromaDB Vector Engine Initialization ---
+#
+# Embedding and loading patient records into Vector Database...
+# Records successfully stored in ChromaDB.
+#
+# Searching Vector DB for: 'elderly patients struggling with high blood pressure'
+# Top 2 Semantic Matches Found:
+# Match 1: Patient 101 ... Diagnosed with Hypertension.
+# Match 2: Patient 102 ... Severe chronic hypertension tracking.
+```
+
+---
+
 ## 💻 Local AI Execution & Validation
 
 ```bash
@@ -227,7 +248,7 @@ python day6_data_cleaning.py
 python3 -m venv .venv
 source .venv/bin/activate
 
-# 2. Install Day 1 through Day 6 dependencies
+# 2. Install Day 1 through Day 7 dependencies
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 
@@ -248,6 +269,9 @@ python day5_eda.py
 
 # 8. Run healthcare data cleaning and text serialization
 python day6_data_cleaning.py
+
+# 9. Run local ChromaDB semantic retrieval
+python day7_vector_db.py
 
 # Verify clean git tracking (ignoring .venv)
 git status
