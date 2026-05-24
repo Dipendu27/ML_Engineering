@@ -40,7 +40,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 ## 📊 Phase 2: Classical Machine Learning (Days 11–20)
 
 - [x] **Day 11:** Linear Regression - Train a continuous blood pressure predictor with Scikit-learn.
-- [ ] **Day 12:** Logistic Regression - Building a classifier model.
+- [x] **Day 12:** Logistic Regression - Train a binary hypertension classifier and inspect confusion matrix errors.
 - [ ] **Day 13:** Decision Trees - Learning how tree-based models make splits.
 - [ ] **Day 14:** Random Forests - Predicting categorical outcomes, such as patient readmission.
 - [ ] **Day 15:** Gradient Boosting - Introduction to XGBoost.
@@ -106,7 +106,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 
 ## ✅ Current Status
 
-Day 11 is complete. Phase 2 has started with classical machine learning. The project now has:
+Day 12 is complete. Phase 2 now includes both regression and classification foundations. The project now has:
 
 - `test_env.py` for validating Apple Silicon ML acceleration with PyTorch MPS and Apple MLX.
 - `day2_data_engine.py` for generating synthetic patient biomarker data, imputing missing clinical fields, and filtering high-risk hypertension records.
@@ -119,11 +119,12 @@ Day 11 is complete. Phase 2 has started with classical machine learning. The pro
 - `day9_eda.py` for generating synthetic clinical EDA summaries with Matplotlib and Seaborn visualizations.
 - `day10_real_eda.py` for cleaning messy real-world-style clinical data and visualizing cleaned diagnosis distributions.
 - `day11_linear_regression.py` for training and evaluating a Scikit-learn linear regression model on synthetic patient blood pressure data.
+- `day12_logistic_regression.py` for training a Scikit-learn logistic regression classifier and analyzing true/false positives and negatives.
 - `Figure_1.png` as the Day 9 EDA dashboard image with an age histogram, BMI/BP scatter plot, and correlation heatmap.
 - `Figure_2.png` as the Day 10 cleaned diagnosis count chart.
 - `healthcare_dataset.csv` as the local source dataset used by the Day 5 and Day 6 scripts.
 - `cleaned_healthcare_data.csv` as the cleaned Day 6 output dataset with serialized patient profiles.
-- `requirements.txt` with the Day 1 through Day 11 Python dependencies.
+- `requirements.txt` with the Day 1 through Day 12 Python dependencies.
 
 ## 📂 Project Highlights
 
@@ -320,6 +321,24 @@ python day11_linear_regression.py
 
 ---
 
+### 🧪 Logistic Regression Classifier (`day12_logistic_regression.py`)
+
+Generates synthetic patient risk data, scales age, BMI, and heart-rate features, trains a Scikit-learn `LogisticRegression` classifier, evaluates accuracy, and breaks down confusion matrix errors for hypertension classification.
+
+```bash
+python day12_logistic_regression.py
+# --- Day 12: Logistic Regression Classifier ---
+#
+# Dataset Balance: 731 patients with Hypertension, 269 Healthy
+# Overall Model Accuracy: 84.50%
+# True Negatives: 39 | False Positives: 18
+# False Negatives: 13 | True Positives: 130
+# Prediction: Healthy
+# AI Confidence (Probability): 32.6%
+```
+
+---
+
 ## 💻 Local AI Execution & Validation
 
 ```bash
@@ -327,7 +346,7 @@ python day11_linear_regression.py
 python3 -m venv .venv
 source .venv/bin/activate
 
-# 2. Install Day 1 through Day 11 dependencies
+# 2. Install Day 1 through Day 12 dependencies
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 
@@ -363,6 +382,9 @@ python day10_real_eda.py
 
 # 13. Run linear regression blood pressure prediction
 python day11_linear_regression.py
+
+# 14. Run logistic regression hypertension classification
+python day12_logistic_regression.py
 
 # Verify clean git tracking (ignoring .venv)
 git status
