@@ -52,7 +52,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 
 ## 🧠 Phase 3: Deep Learning & Embeddings (Days 21–30)
 
-- [ ] **Day 21:** PyTorch Fundamentals - Tensors and basic operations.
+- [x] **Day 21:** PyTorch Fundamentals - Create tensors, bridge NumPy arrays, run matrix multiplication, and reshape data.
 - [ ] **Day 22:** Multi-Layer Perceptron (MLP) - Building your first neural network.
 - [ ] **Day 23:** Hardware Acceleration - Pushing tensors to the M5 GPU (`device = torch.device("mps")`).
 - [ ] **Day 24:** Neural Network Training - Forward passes, loss functions, and backpropagation.
@@ -106,7 +106,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 
 ## ✅ Current Status
 
-Day 20 is complete. Phase 2 is now complete with supervised learning, ensemble methods, gradient boosting, clustering, dimensionality reduction, robust evaluation, and end-to-end ML pipelines. The project now has:
+Day 21 is complete. Phase 3 has started with PyTorch tensor fundamentals, connecting classical NumPy workflows to deep learning tensor operations. The project now has:
 
 - `day1_test_env.py` for validating Apple Silicon ML acceleration with PyTorch MPS and Apple MLX.
 - `day2_data_engine.py` for generating synthetic patient biomarker data, imputing missing clinical fields, and filtering high-risk hypertension records.
@@ -128,6 +128,7 @@ Day 20 is complete. Phase 2 is now complete with supervised learning, ensemble m
 - `day18_pca_reduction.py` for reducing 30-dimensional medical measurements into two principal components for visualization.
 - `day19_model_evaluation.py` for evaluating an imbalanced rare-disease classifier with precision, recall, F1-score, and ROC-AUC.
 - `day20_pipeline_optimization.py` for chaining SMOTE and Random Forest in an imbalanced-learn pipeline with threshold tuning.
+- `day21_pytorch_tensors.py` for creating PyTorch tensors, converting NumPy arrays, running neural-network-style matrix multiplication, and reshaping tensor data.
 - `Figure_1.png` as the Day 9 EDA dashboard image with an age histogram, BMI/BP scatter plot, and correlation heatmap.
 - `Figure_2.png` as the Day 10 cleaned diagnosis count chart.
 - `Decision_Tree.jpeg` and `Figure_3.png` as Day 13 decision tree visualization artifacts.
@@ -137,7 +138,7 @@ Day 20 is complete. Phase 2 is now complete with supervised learning, ensemble m
 - `Figure_7.png` as the Day 19 ROC curve for rare-disease model evaluation.
 - `healthcare_dataset.csv` as the local source dataset used by the Day 5 and Day 6 scripts.
 - `cleaned_healthcare_data.csv` as the cleaned Day 6 output dataset with serialized patient profiles.
-- `requirements.txt` with the Day 1 through Day 20 Python dependencies.
+- `requirements.txt` with the Day 1 through Day 21 Python dependencies.
 
 ## 📂 Project Highlights
 
@@ -501,6 +502,28 @@ python day20_pipeline_optimization.py
 
 ---
 
+### 🔥 PyTorch Tensor Fundamentals (`day21_pytorch_tensors.py`)
+
+Introduces core PyTorch tensor operations for deep learning: creating tensors from Python and NumPy data, multiplying patient feature tensors by neural-network weights, and reshaping flat arrays into grids and batches.
+
+```bash
+python day21_pytorch_tensors.py
+# --- Day 21: PyTorch Tensor Fundamentals ---
+#
+# 1D Tensor: tensor([1., 2., 3., 4.]) | Shape: torch.Size([4])
+# Patient Input Shape: torch.Size([1, 3])
+# Weights Shape: torch.Size([3, 2])
+# Neural Network Layer Output:
+# tensor([[41.7000, -1.0000]]) | Shape: torch.Size([1, 2])
+# Reshaped 4x4 Grid:
+# tensor([[ 1,  2,  3,  4],
+#         [ 5,  6,  7,  8],
+#         [ 9, 10, 11, 12],
+#         [13, 14, 15, 16]]) | Shape: torch.Size([4, 4])
+```
+
+---
+
 ## 💻 Local AI Execution & Validation
 
 ```bash
@@ -508,7 +531,7 @@ python day20_pipeline_optimization.py
 python3 -m venv .venv
 source .venv/bin/activate
 
-# 2. Install Day 1 through Day 20 dependencies
+# 2. Install Day 1 through Day 21 dependencies
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 
@@ -574,6 +597,9 @@ python day19_model_evaluation.py
 
 # 22. Run end-to-end SMOTE and Random Forest pipeline
 python day20_pipeline_optimization.py
+
+# 23. Run PyTorch tensor fundamentals
+python day21_pytorch_tensors.py
 
 # Verify clean git tracking (ignoring .venv)
 git status
