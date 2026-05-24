@@ -47,7 +47,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 - [x] **Day 16:** Advanced XGBoost - Tune gradient boosting hyperparameters with randomized cross-validation.
 - [x] **Day 17:** Unsupervised Learning - Segment unlabeled patients with K-Means clustering.
 - [x] **Day 18:** Unsupervised Learning - Reduce high-dimensional medical data with Principal Component Analysis (PCA).
-- [ ] **Day 19:** Model Evaluation - Mastering Precision, Recall, F1-score, and ROC-AUC.
+- [x] **Day 19:** Model Evaluation - Evaluate imbalanced rare-disease detection with Precision, Recall, F1-score, and ROC-AUC.
 - [ ] **Day 20:** ML Pipelines - Building an end-to-end scaling and training pipeline.
 
 ## 🧠 Phase 3: Deep Learning & Embeddings (Days 21–30)
@@ -106,7 +106,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 
 ## ✅ Current Status
 
-Day 18 is complete. Phase 2 now includes supervised learning, ensemble methods, gradient boosting, clustering, and dimensionality reduction. The project now has:
+Day 19 is complete. Phase 2 now includes supervised learning, ensemble methods, gradient boosting, clustering, dimensionality reduction, and robust model evaluation. The project now has:
 
 - `day1_test_env.py` for validating Apple Silicon ML acceleration with PyTorch MPS and Apple MLX.
 - `day2_data_engine.py` for generating synthetic patient biomarker data, imputing missing clinical fields, and filtering high-risk hypertension records.
@@ -126,15 +126,17 @@ Day 18 is complete. Phase 2 now includes supervised learning, ensemble methods, 
 - `day16_xgboost_tuning.py` for tuning an XGBoost regressor with randomized search and cross-validation.
 - `day17_kmeans_clustering.py` for segmenting unlabeled patients into discovered clinical clusters with K-Means.
 - `day18_pca_reduction.py` for reducing 30-dimensional medical measurements into two principal components for visualization.
+- `day19_model_evaluation.py` for evaluating an imbalanced rare-disease classifier with precision, recall, F1-score, and ROC-AUC.
 - `Figure_1.png` as the Day 9 EDA dashboard image with an age histogram, BMI/BP scatter plot, and correlation heatmap.
 - `Figure_2.png` as the Day 10 cleaned diagnosis count chart.
 - `Decision_Tree.jpeg` and `Figure_3.png` as Day 13 decision tree visualization artifacts.
 - `Figure_4.png` as the Day 14 random forest feature-importance chart.
 - `Figure_5.png` as the Day 17 K-Means patient segmentation chart.
 - `Figure_6.png` as the Day 18 PCA dimensionality-reduction chart.
+- `Figure_7.png` as the Day 19 ROC curve for rare-disease model evaluation.
 - `healthcare_dataset.csv` as the local source dataset used by the Day 5 and Day 6 scripts.
 - `cleaned_healthcare_data.csv` as the cleaned Day 6 output dataset with serialized patient profiles.
-- `requirements.txt` with the Day 1 through Day 18 Python dependencies.
+- `requirements.txt` with the Day 1 through Day 19 Python dependencies.
 
 ## 📂 Project Highlights
 
@@ -460,6 +462,26 @@ python day18_pca_reduction.py
 
 ---
 
+### 📏 Advanced Model Evaluation (`day19_model_evaluation.py`)
+
+Creates a highly imbalanced rare-disease dataset, trains a balanced Random Forest classifier, demonstrates why accuracy alone can be misleading, and saves an ROC curve for threshold-independent evaluation.
+
+![Day 19 ROC Curve](Figure_7.png)
+
+```bash
+python day19_model_evaluation.py
+# --- Day 19: Advanced Model Evaluation (The Accuracy Trap) ---
+#
+# Accuracy:  88.15%
+# Precision: 5.22%
+# Recall:    92.86%
+# F1-Score:  9.89%
+# ROC-AUC Score: 0.963
+# Saved ROC curve to: Figure_7.png
+```
+
+---
+
 ## 💻 Local AI Execution & Validation
 
 ```bash
@@ -467,7 +489,7 @@ python day18_pca_reduction.py
 python3 -m venv .venv
 source .venv/bin/activate
 
-# 2. Install Day 1 through Day 18 dependencies
+# 2. Install Day 1 through Day 19 dependencies
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 
@@ -527,6 +549,9 @@ python day17_kmeans_clustering.py
 
 # 20. Run PCA dimensionality reduction
 python day18_pca_reduction.py
+
+# 21. Run advanced model evaluation metrics
+python day19_model_evaluation.py
 
 # Verify clean git tracking (ignoring .venv)
 git status
