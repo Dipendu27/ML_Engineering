@@ -28,7 +28,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 - [x] **Day 3:** Multi-Dimensional Matrices & Dot Products - Simulate semantic matching with Apple MLX.
 - [x] **Day 4:** MLX Autograd & Calculus Engine - Calculate loss values and gradients for backpropagation intuition.
 - [x] **Day 5:** Healthcare Dataset EDA - Load a local healthcare dataset with Pandas and inspect shape, preview rows, and missing values.
-- [ ] **Day 6:** Math Basics - Linear algebra fundamentals and matrices.
+- [x] **Day 6:** Data Cleaning & RAG Text Serialization - Impute missing BMI values and convert patient rows into natural-language profiles.
 - [ ] **Day 7:** Math Basics - Vector dot products and semantic math.
 - [ ] **Day 8:** Math Basics - Calculus intuition and derivatives for backpropagation.
 - [ ] **Day 9:** Exploratory Data Analysis (EDA) - Introduction to Matplotlib and Seaborn.
@@ -103,15 +103,17 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 
 ## ✅ Current Status
 
-Day 5 is complete. The project now has:
+Day 6 is complete. The project now has:
 
 - `test_env.py` for validating Apple Silicon ML acceleration with PyTorch MPS and Apple MLX.
 - `day2_data_engine.py` for generating synthetic patient biomarker data, imputing missing clinical fields, and filtering high-risk hypertension records.
 - `day3_vector_math.py` for simulating clinical semantic similarity with dot products and MLX matrix multiplication.
 - `day4_calculus_engine.py` for validating MLX autograd by calculating a loss function gradient.
 - `day5_eda.py` for running exploratory data analysis on the local healthcare dataset.
-- `healthcare_dataset.csv` as the local Day 5 dataset used by the EDA script.
-- `requirements.txt` with the Day 1 through Day 5 Python dependencies.
+- `day6_data_cleaning.py` for imputing missing BMI values and creating patient text profiles for future RAG embeddings.
+- `healthcare_dataset.csv` as the local source dataset used by the Day 5 and Day 6 scripts.
+- `cleaned_healthcare_data.csv` as the cleaned Day 6 output dataset with serialized patient profiles.
+- `requirements.txt` with the Day 1 through Day 6 Python dependencies.
 
 ## 📂 Project Highlights
 
@@ -202,6 +204,22 @@ python day5_eda.py
 
 ---
 
+### 🧹 Healthcare Data Cleaning (`day6_data_cleaning.py`)
+
+Imputes missing BMI values with the median, verifies that no BMI nulls remain, and serializes each patient record into a natural-language profile suitable for later embedding and RAG retrieval work.
+
+```bash
+python day6_data_cleaning.py
+# --- Healthcare Data Cleaning Pipeline ---
+# Fixed 201 missing values by imputing the median BMI: 28.1
+# Missing BMI values remaining: 0
+#
+# Converting patient records into text profiles...
+# Success! Cleaned data saved to: cleaned_healthcare_data.csv
+```
+
+---
+
 ## 💻 Local AI Execution & Validation
 
 ```bash
@@ -209,7 +227,7 @@ python day5_eda.py
 python3 -m venv .venv
 source .venv/bin/activate
 
-# 2. Install Day 1 through Day 5 dependencies
+# 2. Install Day 1 through Day 6 dependencies
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 
@@ -227,6 +245,9 @@ python day4_calculus_engine.py
 
 # 7. Run healthcare dataset EDA
 python day5_eda.py
+
+# 8. Run healthcare data cleaning and text serialization
+python day6_data_cleaning.py
 
 # Verify clean git tracking (ignoring .venv)
 git status
