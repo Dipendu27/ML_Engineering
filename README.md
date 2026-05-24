@@ -42,7 +42,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 - [x] **Day 11:** Linear Regression - Train a continuous blood pressure predictor with Scikit-learn.
 - [x] **Day 12:** Logistic Regression - Train a binary hypertension classifier and inspect confusion matrix errors.
 - [x] **Day 13:** Decision Trees - Train an interpretable priority follow-up classifier and visualize its split rules.
-- [ ] **Day 14:** Random Forests - Predicting categorical outcomes, such as patient readmission.
+- [x] **Day 14:** Random Forests - Train an ensemble classifier for patient readmission and inspect feature importance.
 - [ ] **Day 15:** Gradient Boosting - Introduction to XGBoost.
 - [ ] **Day 16:** Advanced XGBoost - Training models on tabular data.
 - [ ] **Day 17:** Unsupervised Learning - Implementing K-Means clustering.
@@ -106,7 +106,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 
 ## ✅ Current Status
 
-Day 13 is complete. Phase 2 now includes regression, logistic classification, and interpretable tree-based classification. The project now has:
+Day 14 is complete. Phase 2 now includes regression, logistic classification, decision trees, and random forest ensembles. The project now has:
 
 - `day1_test_env.py` for validating Apple Silicon ML acceleration with PyTorch MPS and Apple MLX.
 - `day2_data_engine.py` for generating synthetic patient biomarker data, imputing missing clinical fields, and filtering high-risk hypertension records.
@@ -121,12 +121,14 @@ Day 13 is complete. Phase 2 now includes regression, logistic classification, an
 - `day11_linear_regression.py` for training and evaluating a Scikit-learn linear regression model on synthetic patient blood pressure data.
 - `day12_logistic_regression.py` for training a Scikit-learn logistic regression classifier and analyzing true/false positives and negatives.
 - `day13_decision_trees.py` for training a Scikit-learn decision tree classifier and visualizing the learned clinical split logic.
+- `day14_random_forest.py` for training a Scikit-learn random forest readmission classifier and plotting feature importances.
 - `Figure_1.png` as the Day 9 EDA dashboard image with an age histogram, BMI/BP scatter plot, and correlation heatmap.
 - `Figure_2.png` as the Day 10 cleaned diagnosis count chart.
 - `Decision_Tree.jpeg` and `Figure_3.png` as Day 13 decision tree visualization artifacts.
+- `Figure_4.png` as the Day 14 random forest feature-importance chart.
 - `healthcare_dataset.csv` as the local source dataset used by the Day 5 and Day 6 scripts.
 - `cleaned_healthcare_data.csv` as the cleaned Day 6 output dataset with serialized patient profiles.
-- `requirements.txt` with the Day 1 through Day 13 Python dependencies.
+- `requirements.txt` with the Day 1 through Day 14 Python dependencies.
 
 ## 📂 Project Highlights
 
@@ -358,6 +360,24 @@ python day13_decision_trees.py
 
 ---
 
+### 🌲 Random Forest Classifier (`day14_random_forest.py`)
+
+Generates synthetic hospital readmission data, trains a 100-tree `RandomForestClassifier`, evaluates readmission classification performance, and saves a feature-importance chart showing which clinical variables the ensemble relied on most.
+
+![Day 14 Random Forest Feature Importance](Figure_4.png)
+
+```bash
+python day14_random_forest.py
+# --- Day 14: Random Forest Classifier (Patient Readmission) ---
+#
+# Dataset: 335 patients were readmitted out of 1200.
+# Forest Accuracy: 74.17%
+# Healthy f1-score: 0.83 | Readmitted f1-score: 0.44
+# Saved feature importance chart to: Figure_4.png
+```
+
+---
+
 ## 💻 Local AI Execution & Validation
 
 ```bash
@@ -365,7 +385,7 @@ python day13_decision_trees.py
 python3 -m venv .venv
 source .venv/bin/activate
 
-# 2. Install Day 1 through Day 13 dependencies
+# 2. Install Day 1 through Day 14 dependencies
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 
@@ -407,6 +427,9 @@ python day12_logistic_regression.py
 
 # 15. Run decision tree priority follow-up classification
 python day13_decision_trees.py
+
+# 16. Run random forest hospital readmission classification
+python day14_random_forest.py
 
 # Verify clean git tracking (ignoring .venv)
 git status
