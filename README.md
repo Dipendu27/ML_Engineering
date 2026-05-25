@@ -56,7 +56,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 - [x] **Day 22:** Multi-Layer Perceptron (MLP) - Build a PyTorch `nn.Module` patient-risk network and run a forward pass.
 - [x] **Day 23:** Hardware Acceleration - Move large tensors to Apple Silicon MPS and benchmark CPU vs GPU matrix multiplication.
 - [x] **Day 24:** Neural Network Training - Train a PyTorch risk model with forward passes, BCE loss, backpropagation, and Adam on MPS.
-- [ ] **Day 25:** Transformers - Understanding self-attention architectures.
+- [x] **Day 25:** Transformers - Implement self-attention from scratch with Q/K/V tensors, dot products, softmax weights, and context-aware outputs.
 - [ ] **Day 26:** Hugging Face - Loading pre-trained models via the `transformers` library.
 - [ ] **Day 27:** NLP Processing - Tokenization and text preparation.
 - [ ] **Day 28:** Vectorization - Converting medical text into dense numerical vectors (embeddings).
@@ -106,7 +106,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 
 ## ✅ Current Status
 
-Day 24 is complete. Phase 3 now includes PyTorch tensor fundamentals, a first neural network built with `nn.Module`, Apple Silicon MPS benchmarking, and a full neural network training loop. The project now has:
+Day 25 is complete. Phase 3 now includes PyTorch tensor fundamentals, a first neural network built with `nn.Module`, Apple Silicon MPS benchmarking, a full neural network training loop, and a from-scratch self-attention demonstration. The project now has:
 
 - `day1_test_env.py` for validating Apple Silicon ML acceleration with PyTorch MPS and Apple MLX.
 - `day2_data_engine.py` for generating synthetic patient biomarker data, imputing missing clinical fields, and filtering high-risk hypertension records.
@@ -132,6 +132,7 @@ Day 24 is complete. Phase 3 now includes PyTorch tensor fundamentals, a first ne
 - `day22_mlp_network.py` for defining a PyTorch multi-layer perceptron with hidden layers, ReLU activations, sigmoid output, and a mock patient forward pass.
 - `day23_hardware_acceleration.py` for moving large PyTorch tensors to Apple Silicon MPS and comparing synchronized CPU vs GPU matrix multiplication timing.
 - `day24_nn_training.py` for training a PyTorch neural network on synthetic patient-risk data with BCE loss, backpropagation, and the Adam optimizer on MPS.
+- `day25_self_attention.py` for implementing transformer-style self-attention from scratch with query, key, value tensors, attention weights, and context-aware outputs.
 - `Figure_1.png` as the Day 9 EDA dashboard image with an age histogram, BMI/BP scatter plot, and correlation heatmap.
 - `Figure_2.png` as the Day 10 cleaned diagnosis count chart.
 - `Decision_Tree.jpeg` and `Figure_3.png` as Day 13 decision tree visualization artifacts.
@@ -141,7 +142,7 @@ Day 24 is complete. Phase 3 now includes PyTorch tensor fundamentals, a first ne
 - `Figure_7.png` as the Day 19 ROC curve for rare-disease model evaluation.
 - `healthcare_dataset.csv` as the local source dataset used by the Day 5 and Day 6 scripts.
 - `cleaned_healthcare_data.csv` as the cleaned Day 6 output dataset with serialized patient profiles.
-- `requirements.txt` with the Day 1 through Day 24 Python dependencies.
+- `requirements.txt` with the Day 1 through Day 25 Python dependencies.
 
 ## 📂 Project Highlights
 
@@ -583,6 +584,27 @@ python day24_nn_training.py
 
 ---
 
+### 🔎 Transformer Self-Attention (`day25_self_attention.py`)
+
+Builds self-attention from scratch using PyTorch tensors: embedded words become query, key, and value matrices; dot products score relationships; softmax converts scores into attention weights; and the final output blends each word with its context.
+
+```bash
+python day25_self_attention.py
+# --- Day 25: Transformers & Self-Attention (From Scratch) ---
+#
+# Raw Attention Scores:
+# tensor([[1.2900, 0.0000, 1.0400],
+#         [0.0000, 1.0000, 0.0000],
+#         [1.0400, 0.0000, 1.2900]])
+# Attention Weights:
+# tensor([[0.4900, 0.1300, 0.3800],
+#         [0.2100, 0.5800, 0.2100],
+#         [0.3800, 0.1300, 0.4900]])
+# Final Context-Aware Output Shape: torch.Size([3, 4])
+```
+
+---
+
 ## 💻 Local AI Execution & Validation
 
 ```bash
@@ -590,7 +612,7 @@ python day24_nn_training.py
 python3 -m venv .venv
 source .venv/bin/activate
 
-# 2. Install Day 1 through Day 24 dependencies
+# 2. Install Day 1 through Day 25 dependencies
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 
@@ -668,6 +690,9 @@ python day23_hardware_acceleration.py
 
 # 26. Run PyTorch neural network training loop
 python day24_nn_training.py
+
+# 27. Run transformer self-attention from scratch
+python day25_self_attention.py
 
 # Verify clean git tracking (ignoring .venv)
 git status
