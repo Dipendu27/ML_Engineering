@@ -13,7 +13,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 | **Shell** | Bash / Zsh |
 | **Version Control** | Git, GitHub, `.gitignore` configuration |
 | **Core ML Engines** | Apple MLX, PyTorch (Metal Performance Shaders) |
-| **Transformer Tooling** | Hugging Face Transformers, Tokenizers |
+| **Transformer Tooling** | Hugging Face Transformers, Tokenizers, Sentence Transformers |
 | **Data Engineering** | Python 3.11, NumPy, Pandas |
 | **Data Visualization** | Matplotlib, Seaborn |
 | **Classical ML** | Scikit-learn, XGBoost, imbalanced-learn |
@@ -61,7 +61,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 - [x] **Day 26:** Hugging Face - Load a pre-trained DistilBERT model with the pipeline API and manual tokenizer/model inference.
 - [x] **Day 27:** NLP Processing - Tokenize batches of medical notes with padding, truncation, attention masks, and decoded special tokens.
 - [x] **Day 28:** Vectorization - Convert clinical text into dense sentence embeddings with MiniLM mean pooling and cosine similarity.
-- [ ] **Day 29:** Lightweight Models - Generating embeddings using small, efficient models.
+- [x] **Day 29:** Lightweight Models - Benchmark MiniLM vs BGE-Small sentence embedding models on a simulated medical corpus.
 - [ ] **Day 30:** Vector Databases - Spinning up a local ChromaDB instance for storage.
 
 ## 👁️ Phase 4: Vision & The MLX Engine (Days 31–40)
@@ -107,7 +107,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 
 ## ✅ Current Status
 
-Day 28 is complete. Phase 3 now includes PyTorch tensor fundamentals, a first neural network built with `nn.Module`, Apple Silicon MPS benchmarking, a full neural network training loop, a from-scratch self-attention demonstration, pre-trained Hugging Face transformer inference, medical-note tokenization workflows, and dense text vectorization for semantic similarity. The project now has:
+Day 29 is complete. Phase 3 now includes PyTorch tensor fundamentals, a first neural network built with `nn.Module`, Apple Silicon MPS benchmarking, a full neural network training loop, a from-scratch self-attention demonstration, pre-trained Hugging Face transformer inference, medical-note tokenization workflows, dense text vectorization, and lightweight embedding model benchmarking. The project now has:
 
 - `day1_test_env.py` for validating Apple Silicon ML acceleration with PyTorch MPS and Apple MLX.
 - `day2_data_engine.py` for generating synthetic patient biomarker data, imputing missing clinical fields, and filtering high-risk hypertension records.
@@ -137,6 +137,7 @@ Day 28 is complete. Phase 3 now includes PyTorch tensor fundamentals, a first ne
 - `day26_huggingface_intro.py` for using Hugging Face Transformers through the high-level pipeline API and the manual tokenizer/model inference path.
 - `day27_nlp_processing.py` for tokenizing batches of medical notes with BERT, padding variable-length text, building attention masks, and decoding special tokens.
 - `day28_embeddings.py` for generating MiniLM sentence embeddings with mean pooling and comparing clinical concepts with cosine similarity.
+- `day29_model_benchmarking.py` for benchmarking MiniLM and BGE-Small embedding models on a 500-document simulated medical corpus.
 - `Figure_1.png` as the Day 9 EDA dashboard image with an age histogram, BMI/BP scatter plot, and correlation heatmap.
 - `Figure_2.png` as the Day 10 cleaned diagnosis count chart.
 - `Decision_Tree.jpeg` and `Figure_3.png` as Day 13 decision tree visualization artifacts.
@@ -146,7 +147,7 @@ Day 28 is complete. Phase 3 now includes PyTorch tensor fundamentals, a first ne
 - `Figure_7.png` as the Day 19 ROC curve for rare-disease model evaluation.
 - `healthcare_dataset.csv` as the local source dataset used by the Day 5 and Day 6 scripts.
 - `cleaned_healthcare_data.csv` as the cleaned Day 6 output dataset with serialized patient profiles.
-- `requirements.txt` with the Day 1 through Day 28 Python dependencies.
+- `requirements.txt` with the Day 1 through Day 29 Python dependencies.
 
 ## 📂 Project Highlights
 
@@ -670,6 +671,26 @@ python day28_embeddings.py
 
 ---
 
+### 🧪 Embedding Model Benchmarking (`day29_model_benchmarking.py`)
+
+Benchmarks two lightweight sentence embedding models, `all-MiniLM-L6-v2` and `BAAI/bge-small-en-v1.5`, across a simulated batch of 500 medical documents to compare runtime and vector dimensionality for future RAG model selection.
+
+```bash
+python day29_model_benchmarking.py
+# --- Day 29: Embedding Model Benchmarking ---
+#
+# Benchmarking payload: 500 medical documents.
+# MiniLM Time: 0.3192 seconds
+# Vector Dimensions: 384 numbers per document
+# BGE Time: 0.2398 seconds
+# Vector Dimensions: 384 numbers per document
+#
+# BENCHMARK RESULTS:
+# Fastest Model: BGE-Small (1.33x faster)
+```
+
+---
+
 ## 💻 Local AI Execution & Validation
 
 ```bash
@@ -677,7 +698,7 @@ python day28_embeddings.py
 python3 -m venv .venv
 source .venv/bin/activate
 
-# 2. Install Day 1 through Day 28 dependencies
+# 2. Install Day 1 through Day 29 dependencies
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 
@@ -767,6 +788,9 @@ python day27_nlp_processing.py
 
 # 30. Run MiniLM text embedding vectorization
 python day28_embeddings.py
+
+# 31. Run embedding model benchmarking
+python day29_model_benchmarking.py
 
 # Verify clean git tracking (ignoring .venv)
 git status
