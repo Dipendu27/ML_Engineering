@@ -13,6 +13,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 | **Shell** | Bash / Zsh |
 | **Version Control** | Git, GitHub, `.gitignore` configuration |
 | **Core ML Engines** | Apple MLX, PyTorch (Metal Performance Shaders) |
+| **Transformer Tooling** | Hugging Face Transformers, Tokenizers |
 | **Data Engineering** | Python 3.11, NumPy, Pandas |
 | **Data Visualization** | Matplotlib, Seaborn |
 | **Classical ML** | Scikit-learn, XGBoost, imbalanced-learn |
@@ -57,7 +58,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 - [x] **Day 23:** Hardware Acceleration - Move large tensors to Apple Silicon MPS and benchmark CPU vs GPU matrix multiplication.
 - [x] **Day 24:** Neural Network Training - Train a PyTorch risk model with forward passes, BCE loss, backpropagation, and Adam on MPS.
 - [x] **Day 25:** Transformers - Implement self-attention from scratch with Q/K/V tensors, dot products, softmax weights, and context-aware outputs.
-- [ ] **Day 26:** Hugging Face - Loading pre-trained models via the `transformers` library.
+- [x] **Day 26:** Hugging Face - Load a pre-trained DistilBERT model with the pipeline API and manual tokenizer/model inference.
 - [ ] **Day 27:** NLP Processing - Tokenization and text preparation.
 - [ ] **Day 28:** Vectorization - Converting medical text into dense numerical vectors (embeddings).
 - [ ] **Day 29:** Lightweight Models - Generating embeddings using small, efficient models.
@@ -106,7 +107,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 
 ## ✅ Current Status
 
-Day 25 is complete. Phase 3 now includes PyTorch tensor fundamentals, a first neural network built with `nn.Module`, Apple Silicon MPS benchmarking, a full neural network training loop, and a from-scratch self-attention demonstration. The project now has:
+Day 26 is complete. Phase 3 now includes PyTorch tensor fundamentals, a first neural network built with `nn.Module`, Apple Silicon MPS benchmarking, a full neural network training loop, a from-scratch self-attention demonstration, and pre-trained Hugging Face transformer inference. The project now has:
 
 - `day1_test_env.py` for validating Apple Silicon ML acceleration with PyTorch MPS and Apple MLX.
 - `day2_data_engine.py` for generating synthetic patient biomarker data, imputing missing clinical fields, and filtering high-risk hypertension records.
@@ -133,6 +134,7 @@ Day 25 is complete. Phase 3 now includes PyTorch tensor fundamentals, a first ne
 - `day23_hardware_acceleration.py` for moving large PyTorch tensors to Apple Silicon MPS and comparing synchronized CPU vs GPU matrix multiplication timing.
 - `day24_nn_training.py` for training a PyTorch neural network on synthetic patient-risk data with BCE loss, backpropagation, and the Adam optimizer on MPS.
 - `day25_self_attention.py` for implementing transformer-style self-attention from scratch with query, key, value tensors, attention weights, and context-aware outputs.
+- `day26_huggingface_intro.py` for using Hugging Face Transformers through the high-level pipeline API and the manual tokenizer/model inference path.
 - `Figure_1.png` as the Day 9 EDA dashboard image with an age histogram, BMI/BP scatter plot, and correlation heatmap.
 - `Figure_2.png` as the Day 10 cleaned diagnosis count chart.
 - `Decision_Tree.jpeg` and `Figure_3.png` as Day 13 decision tree visualization artifacts.
@@ -142,7 +144,7 @@ Day 25 is complete. Phase 3 now includes PyTorch tensor fundamentals, a first ne
 - `Figure_7.png` as the Day 19 ROC curve for rare-disease model evaluation.
 - `healthcare_dataset.csv` as the local source dataset used by the Day 5 and Day 6 scripts.
 - `cleaned_healthcare_data.csv` as the cleaned Day 6 output dataset with serialized patient profiles.
-- `requirements.txt` with the Day 1 through Day 25 Python dependencies.
+- `requirements.txt` with the Day 1 through Day 26 Python dependencies.
 
 ## 📂 Project Highlights
 
@@ -605,6 +607,27 @@ python day25_self_attention.py
 
 ---
 
+### 🤗 Hugging Face Transformers (`day26_huggingface_intro.py`)
+
+Introduces pre-trained transformer inference with Hugging Face by running DistilBERT through the high-level sentiment-analysis pipeline, then manually loading the tokenizer and model to inspect token IDs, logits, and softmax probabilities.
+
+```bash
+python day26_huggingface_intro.py
+# --- Day 26: Hugging Face & Pre-Trained Transformers ---
+#
+# Part 1: The High-Level Pipeline API
+# AI Analysis: [{'label': 'POSITIVE', 'score': 0.9998774528503418}]
+# AI Analysis: [{'label': 'NEGATIVE', 'score': 0.9959498643875122}]
+#
+# Part 2: Under the Hood (Manual Tokenization & Inference)
+# Tokenized PyTorch Tensor:
+# tensor([[  101,  5776,  5683,  3811, 16342,  2094,  2651,  1012,   102]])
+# Final Probabilities [Negative, Positive]:
+# tensor([[9.9950e-01, 5.0000e-04]])
+```
+
+---
+
 ## 💻 Local AI Execution & Validation
 
 ```bash
@@ -612,7 +635,7 @@ python day25_self_attention.py
 python3 -m venv .venv
 source .venv/bin/activate
 
-# 2. Install Day 1 through Day 25 dependencies
+# 2. Install Day 1 through Day 26 dependencies
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 
@@ -693,6 +716,9 @@ python day24_nn_training.py
 
 # 27. Run transformer self-attention from scratch
 python day25_self_attention.py
+
+# 28. Run Hugging Face pre-trained transformer inference
+python day26_huggingface_intro.py
 
 # Verify clean git tracking (ignoring .venv)
 git status
