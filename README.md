@@ -60,7 +60,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 - [x] **Day 25:** Transformers - Implement self-attention from scratch with Q/K/V tensors, dot products, softmax weights, and context-aware outputs.
 - [x] **Day 26:** Hugging Face - Load a pre-trained DistilBERT model with the pipeline API and manual tokenizer/model inference.
 - [x] **Day 27:** NLP Processing - Tokenize batches of medical notes with padding, truncation, attention masks, and decoded special tokens.
-- [ ] **Day 28:** Vectorization - Converting medical text into dense numerical vectors (embeddings).
+- [x] **Day 28:** Vectorization - Convert clinical text into dense sentence embeddings with MiniLM mean pooling and cosine similarity.
 - [ ] **Day 29:** Lightweight Models - Generating embeddings using small, efficient models.
 - [ ] **Day 30:** Vector Databases - Spinning up a local ChromaDB instance for storage.
 
@@ -107,7 +107,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 
 ## ✅ Current Status
 
-Day 27 is complete. Phase 3 now includes PyTorch tensor fundamentals, a first neural network built with `nn.Module`, Apple Silicon MPS benchmarking, a full neural network training loop, a from-scratch self-attention demonstration, pre-trained Hugging Face transformer inference, and medical-note tokenization workflows. The project now has:
+Day 28 is complete. Phase 3 now includes PyTorch tensor fundamentals, a first neural network built with `nn.Module`, Apple Silicon MPS benchmarking, a full neural network training loop, a from-scratch self-attention demonstration, pre-trained Hugging Face transformer inference, medical-note tokenization workflows, and dense text vectorization for semantic similarity. The project now has:
 
 - `day1_test_env.py` for validating Apple Silicon ML acceleration with PyTorch MPS and Apple MLX.
 - `day2_data_engine.py` for generating synthetic patient biomarker data, imputing missing clinical fields, and filtering high-risk hypertension records.
@@ -136,6 +136,7 @@ Day 27 is complete. Phase 3 now includes PyTorch tensor fundamentals, a first ne
 - `day25_self_attention.py` for implementing transformer-style self-attention from scratch with query, key, value tensors, attention weights, and context-aware outputs.
 - `day26_huggingface_intro.py` for using Hugging Face Transformers through the high-level pipeline API and the manual tokenizer/model inference path.
 - `day27_nlp_processing.py` for tokenizing batches of medical notes with BERT, padding variable-length text, building attention masks, and decoding special tokens.
+- `day28_embeddings.py` for generating MiniLM sentence embeddings with mean pooling and comparing clinical concepts with cosine similarity.
 - `Figure_1.png` as the Day 9 EDA dashboard image with an age histogram, BMI/BP scatter plot, and correlation heatmap.
 - `Figure_2.png` as the Day 10 cleaned diagnosis count chart.
 - `Decision_Tree.jpeg` and `Figure_3.png` as Day 13 decision tree visualization artifacts.
@@ -145,7 +146,7 @@ Day 27 is complete. Phase 3 now includes PyTorch tensor fundamentals, a first ne
 - `Figure_7.png` as the Day 19 ROC curve for rare-disease model evaluation.
 - `healthcare_dataset.csv` as the local source dataset used by the Day 5 and Day 6 scripts.
 - `cleaned_healthcare_data.csv` as the cleaned Day 6 output dataset with serialized patient profiles.
-- `requirements.txt` with the Day 1 through Day 27 Python dependencies.
+- `requirements.txt` with the Day 1 through Day 28 Python dependencies.
 
 ## 📂 Project Highlights
 
@@ -650,6 +651,25 @@ python day27_nlp_processing.py
 
 ---
 
+### 🧬 Text Embeddings & Mean Pooling (`day28_embeddings.py`)
+
+Converts clinical sentences into dense 384-dimensional vectors using `sentence-transformers/all-MiniLM-L6-v2`, applies attention-mask-aware mean pooling, and compares semantic meaning with cosine similarity for future RAG retrieval.
+
+```bash
+python day28_embeddings.py
+# --- Day 28: Text Vectorization & Mean Pooling ---
+#
+# Raw Word Embeddings Shape: torch.Size([3, 12, 384])
+# (3 sentences, 12 tokens each, 384 dimensions per token)
+# Final Sentence Embeddings Shape: torch.Size([3, 384])
+#
+# Semantic Similarity Scores:
+# Hypertension vs. High Blood Pressure:  0.6987
+# Hypertension vs. Fractured Femur:      0.2997
+```
+
+---
+
 ## 💻 Local AI Execution & Validation
 
 ```bash
@@ -657,7 +677,7 @@ python day27_nlp_processing.py
 python3 -m venv .venv
 source .venv/bin/activate
 
-# 2. Install Day 1 through Day 27 dependencies
+# 2. Install Day 1 through Day 28 dependencies
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 
@@ -744,6 +764,9 @@ python day26_huggingface_intro.py
 
 # 29. Run BERT tokenizer NLP processing
 python day27_nlp_processing.py
+
+# 30. Run MiniLM text embedding vectorization
+python day28_embeddings.py
 
 # Verify clean git tracking (ignoring .venv)
 git status
