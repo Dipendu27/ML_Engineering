@@ -55,7 +55,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 - [x] **Day 21:** PyTorch Fundamentals - Create tensors, bridge NumPy arrays, run matrix multiplication, and reshape data.
 - [x] **Day 22:** Multi-Layer Perceptron (MLP) - Build a PyTorch `nn.Module` patient-risk network and run a forward pass.
 - [x] **Day 23:** Hardware Acceleration - Move large tensors to Apple Silicon MPS and benchmark CPU vs GPU matrix multiplication.
-- [ ] **Day 24:** Neural Network Training - Forward passes, loss functions, and backpropagation.
+- [x] **Day 24:** Neural Network Training - Train a PyTorch risk model with forward passes, BCE loss, backpropagation, and Adam on MPS.
 - [ ] **Day 25:** Transformers - Understanding self-attention architectures.
 - [ ] **Day 26:** Hugging Face - Loading pre-trained models via the `transformers` library.
 - [ ] **Day 27:** NLP Processing - Tokenization and text preparation.
@@ -106,7 +106,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 
 ## ✅ Current Status
 
-Day 23 is complete. Phase 3 now includes PyTorch tensor fundamentals, a first neural network built with `nn.Module`, and Apple Silicon MPS hardware acceleration benchmarking. The project now has:
+Day 24 is complete. Phase 3 now includes PyTorch tensor fundamentals, a first neural network built with `nn.Module`, Apple Silicon MPS benchmarking, and a full neural network training loop. The project now has:
 
 - `day1_test_env.py` for validating Apple Silicon ML acceleration with PyTorch MPS and Apple MLX.
 - `day2_data_engine.py` for generating synthetic patient biomarker data, imputing missing clinical fields, and filtering high-risk hypertension records.
@@ -131,6 +131,7 @@ Day 23 is complete. Phase 3 now includes PyTorch tensor fundamentals, a first ne
 - `day21_pytorch_tensors.py` for creating PyTorch tensors, converting NumPy arrays, running neural-network-style matrix multiplication, and reshaping tensor data.
 - `day22_mlp_network.py` for defining a PyTorch multi-layer perceptron with hidden layers, ReLU activations, sigmoid output, and a mock patient forward pass.
 - `day23_hardware_acceleration.py` for moving large PyTorch tensors to Apple Silicon MPS and comparing synchronized CPU vs GPU matrix multiplication timing.
+- `day24_nn_training.py` for training a PyTorch neural network on synthetic patient-risk data with BCE loss, backpropagation, and the Adam optimizer on MPS.
 - `Figure_1.png` as the Day 9 EDA dashboard image with an age histogram, BMI/BP scatter plot, and correlation heatmap.
 - `Figure_2.png` as the Day 10 cleaned diagnosis count chart.
 - `Decision_Tree.jpeg` and `Figure_3.png` as Day 13 decision tree visualization artifacts.
@@ -140,7 +141,7 @@ Day 23 is complete. Phase 3 now includes PyTorch tensor fundamentals, a first ne
 - `Figure_7.png` as the Day 19 ROC curve for rare-disease model evaluation.
 - `healthcare_dataset.csv` as the local source dataset used by the Day 5 and Day 6 scripts.
 - `cleaned_healthcare_data.csv` as the cleaned Day 6 output dataset with serialized patient profiles.
-- `requirements.txt` with the Day 1 through Day 23 Python dependencies.
+- `requirements.txt` with the Day 1 through Day 24 Python dependencies.
 
 ## 📂 Project Highlights
 
@@ -564,6 +565,24 @@ python day23_hardware_acceleration.py
 
 ---
 
+### 🏋️ PyTorch Neural Network Training (`day24_nn_training.py`)
+
+Trains a small PyTorch binary classifier on synthetic patient-risk data, moving both data and model to Apple Silicon MPS, then running forward passes, binary cross-entropy loss, backpropagation, and Adam optimizer updates.
+
+```bash
+python day24_nn_training.py
+# --- Day 24: PyTorch Neural Network Training Loop ---
+#
+# Booting Neural Network on device: mps
+# Starting Training Loop for 1000 Epochs...
+# Epoch 0100/1000 | Loss (Error): 0.4396
+# Epoch 0500/1000 | Loss (Error): 0.0704
+# Epoch 1000/1000 | Loss (Error): 0.0388
+# Training Complete! The loss successfully approached 0.
+```
+
+---
+
 ## 💻 Local AI Execution & Validation
 
 ```bash
@@ -571,7 +590,7 @@ python day23_hardware_acceleration.py
 python3 -m venv .venv
 source .venv/bin/activate
 
-# 2. Install Day 1 through Day 23 dependencies
+# 2. Install Day 1 through Day 24 dependencies
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 
@@ -646,6 +665,9 @@ python day22_mlp_network.py
 
 # 25. Run Apple Silicon MPS hardware acceleration benchmark
 python day23_hardware_acceleration.py
+
+# 26. Run PyTorch neural network training loop
+python day24_nn_training.py
 
 # Verify clean git tracking (ignoring .venv)
 git status
