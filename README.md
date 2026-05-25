@@ -59,7 +59,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 - [x] **Day 24:** Neural Network Training - Train a PyTorch risk model with forward passes, BCE loss, backpropagation, and Adam on MPS.
 - [x] **Day 25:** Transformers - Implement self-attention from scratch with Q/K/V tensors, dot products, softmax weights, and context-aware outputs.
 - [x] **Day 26:** Hugging Face - Load a pre-trained DistilBERT model with the pipeline API and manual tokenizer/model inference.
-- [ ] **Day 27:** NLP Processing - Tokenization and text preparation.
+- [x] **Day 27:** NLP Processing - Tokenize batches of medical notes with padding, truncation, attention masks, and decoded special tokens.
 - [ ] **Day 28:** Vectorization - Converting medical text into dense numerical vectors (embeddings).
 - [ ] **Day 29:** Lightweight Models - Generating embeddings using small, efficient models.
 - [ ] **Day 30:** Vector Databases - Spinning up a local ChromaDB instance for storage.
@@ -107,7 +107,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 
 ## ✅ Current Status
 
-Day 26 is complete. Phase 3 now includes PyTorch tensor fundamentals, a first neural network built with `nn.Module`, Apple Silicon MPS benchmarking, a full neural network training loop, a from-scratch self-attention demonstration, and pre-trained Hugging Face transformer inference. The project now has:
+Day 27 is complete. Phase 3 now includes PyTorch tensor fundamentals, a first neural network built with `nn.Module`, Apple Silicon MPS benchmarking, a full neural network training loop, a from-scratch self-attention demonstration, pre-trained Hugging Face transformer inference, and medical-note tokenization workflows. The project now has:
 
 - `day1_test_env.py` for validating Apple Silicon ML acceleration with PyTorch MPS and Apple MLX.
 - `day2_data_engine.py` for generating synthetic patient biomarker data, imputing missing clinical fields, and filtering high-risk hypertension records.
@@ -135,6 +135,7 @@ Day 26 is complete. Phase 3 now includes PyTorch tensor fundamentals, a first ne
 - `day24_nn_training.py` for training a PyTorch neural network on synthetic patient-risk data with BCE loss, backpropagation, and the Adam optimizer on MPS.
 - `day25_self_attention.py` for implementing transformer-style self-attention from scratch with query, key, value tensors, attention weights, and context-aware outputs.
 - `day26_huggingface_intro.py` for using Hugging Face Transformers through the high-level pipeline API and the manual tokenizer/model inference path.
+- `day27_nlp_processing.py` for tokenizing batches of medical notes with BERT, padding variable-length text, building attention masks, and decoding special tokens.
 - `Figure_1.png` as the Day 9 EDA dashboard image with an age histogram, BMI/BP scatter plot, and correlation heatmap.
 - `Figure_2.png` as the Day 10 cleaned diagnosis count chart.
 - `Decision_Tree.jpeg` and `Figure_3.png` as Day 13 decision tree visualization artifacts.
@@ -144,7 +145,7 @@ Day 26 is complete. Phase 3 now includes PyTorch tensor fundamentals, a first ne
 - `Figure_7.png` as the Day 19 ROC curve for rare-disease model evaluation.
 - `healthcare_dataset.csv` as the local source dataset used by the Day 5 and Day 6 scripts.
 - `cleaned_healthcare_data.csv` as the cleaned Day 6 output dataset with serialized patient profiles.
-- `requirements.txt` with the Day 1 through Day 26 Python dependencies.
+- `requirements.txt` with the Day 1 through Day 27 Python dependencies.
 
 ## 📂 Project Highlights
 
@@ -628,6 +629,27 @@ python day26_huggingface_intro.py
 
 ---
 
+### 🧾 NLP Tokenization Pipeline (`day27_nlp_processing.py`)
+
+Processes messy, variable-length medical notes with a BERT tokenizer, producing padded `input_ids`, attention masks that separate real tokens from padding, and decoded examples showing `[CLS]`, `[SEP]`, and `[PAD]` special tokens.
+
+```bash
+python day27_nlp_processing.py
+# --- Day 27: Advanced NLP Processing & Tokenization ---
+#
+# Loaded Tokenizer: bert-base-uncased
+# Processing a batch of raw medical notes...
+# Shape: torch.Size([3, 32]) -> all 3 sentences are now exactly 32 tokens long
+# Attention Mask:
+# 1 = Real Word | 0 = Ignore this (Padding)
+# Decoded Note 1:
+# [CLS] patient has a mild headache. [SEP] [PAD] ...
+# Decoded Note 3:
+# [CLS] follow - up scheduled. [SEP] [PAD] ...
+```
+
+---
+
 ## 💻 Local AI Execution & Validation
 
 ```bash
@@ -635,7 +657,7 @@ python day26_huggingface_intro.py
 python3 -m venv .venv
 source .venv/bin/activate
 
-# 2. Install Day 1 through Day 26 dependencies
+# 2. Install Day 1 through Day 27 dependencies
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 
@@ -719,6 +741,9 @@ python day25_self_attention.py
 
 # 28. Run Hugging Face pre-trained transformer inference
 python day26_huggingface_intro.py
+
+# 29. Run BERT tokenizer NLP processing
+python day27_nlp_processing.py
 
 # Verify clean git tracking (ignoring .venv)
 git status
