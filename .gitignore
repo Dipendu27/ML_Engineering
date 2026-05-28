@@ -3,3 +3,5 @@ __pycache__/
 *.py[cod]
 .DS_Store
 clinical_vector_db/
+yolov8n.pt
+sample_vision.jpg
