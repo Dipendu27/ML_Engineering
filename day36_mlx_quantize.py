@@ -1,6 +1,6 @@
 import subprocess
+import sys
 import time
-import os
 
 print("--- Day 36: Local MLX Model Quantization (16-bit to 4-bit) ---\n")
 
@@ -19,12 +19,21 @@ start_time = time.time()
 # 4. Saves it locally to a folder named 'mlx_model'
 print("⚙️ Running MLX Conversion & Quantization Engine...")
 try:
-    subprocess.run([
-        "python", "-m", "mlx_lm.convert",
-        "--hf-path", hf_repo,
-        "-q" # This flag triggers 4-bit quantization
-    ], check=True)
-    
+    subprocess.run(
+        [
+            sys.executable,
+            "-m",
+            "mlx_lm",
+            "convert",
+            "--hf-path",
+            hf_repo,
+            "--mlx-path",
+            "mlx_model",
+            "-q",  # This flag triggers 4-bit quantization
+        ],
+        check=True,
+    )
+
     print(f"\n✅ Quantization Complete in {time.time() - start_time:.1f} seconds!")
     print("-" * 50)
     print("💡 THE ML ENGINEER TAKEAWAY:")
