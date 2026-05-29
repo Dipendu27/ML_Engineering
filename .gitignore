@@ -5,3 +5,4 @@ __pycache__/
 clinical_vector_db/
 yolov8n.pt
 sample_vision.jpg
+mlx_model/
