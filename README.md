@@ -96,7 +96,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 ## 🚀 Phase 6: Fine-Tuning, UI & Deployment (Days 51–60)
 
 - [x] **Day 51:** PEFT & LoRA - Calculate low-rank adapter parameter savings for efficient LLM fine-tuning.
-- [ ] **Day 52:** Corporate Jargon - Preparing a dataset of specific medical terminology.
+- [x] **Day 52:** LoRA Dataset Preparation - Format casual-to-clinical terminology pairs as MLX-ready JSONL chat data.
 - [ ] **Day 53:** MLX Fine-Tuning - Running LoRA on the quantized model within 16GB limits.
 - [ ] **Day 54:** Merging Weights - Applying the LoRA adapters to the base model.
 - [ ] **Day 55:** User Interface - Introduction to Streamlit.
@@ -110,7 +110,7 @@ Built from scratch — focusing on a privacy-first, 100% local Retrieval-Augment
 
 ## ✅ Current Status
 
-Day 51 is complete. Phase 6 has begun with PEFT and LoRA math, comparing full fine-tuning parameters against low-rank adapter parameters to explain why local LLM adaptation is practical on limited memory. Phase 5 is complete and includes LangChain document ingestion, multi-page clinical PDF parsing, overlapping semantic chunking, batch embedding generation, persistent Chroma vector-store setup, secure chunk insertion, semantic nearest-neighbor retrieval, prompt orchestration, local MLX LLM answer generation, and an interactive local clinical RAG assistant. The project now includes local Hugging Face text generation, YOLOv8 object detection on Apple Silicon, model-specific prompt template formatting, Apple MLX lazy-evaluation optimization, native MLX-LM generation, local 4-bit model quantization, pre-quantized Llama-3 inference with MLX-LM, Apple Silicon Metal memory profiling, tuned streaming inference controls, LangChain clinical document loading, PDF page-level metadata extraction, chunk-level citation preservation, BGE-Small vector generation, a local persistent RAG database backend, deterministic Chroma record IDs, citation-aware semantic search results, Llama-ready RAG prompt payloads, streamed local RAG answers, a reusable `LocalRAGAssistant` class, and LoRA adapter parameter-count analysis. The project now has:
+Day 52 is complete. Phase 6 now includes PEFT/LoRA parameter math plus MLX-ready instruction dataset preparation, converting casual medical notes into formal clinical terminology examples stored as training and validation JSONL chat records. Phase 5 is complete and includes LangChain document ingestion, multi-page clinical PDF parsing, overlapping semantic chunking, batch embedding generation, persistent Chroma vector-store setup, secure chunk insertion, semantic nearest-neighbor retrieval, prompt orchestration, local MLX LLM answer generation, and an interactive local clinical RAG assistant. The project now includes local Hugging Face text generation, YOLOv8 object detection on Apple Silicon, model-specific prompt template formatting, Apple MLX lazy-evaluation optimization, native MLX-LM generation, local 4-bit model quantization, pre-quantized Llama-3 inference with MLX-LM, Apple Silicon Metal memory profiling, tuned streaming inference controls, LangChain clinical document loading, PDF page-level metadata extraction, chunk-level citation preservation, BGE-Small vector generation, a local persistent RAG database backend, deterministic Chroma record IDs, citation-aware semantic search results, Llama-ready RAG prompt payloads, streamed local RAG answers, a reusable `LocalRAGAssistant` class, LoRA adapter parameter-count analysis, and JSONL fine-tuning dataset generation. The project now has:
 
 - `day1_test_env.py` for validating Apple Silicon ML acceleration with PyTorch MPS and Apple MLX.
 - `day2_data_engine.py` for generating synthetic patient biomarker data, imputing missing clinical fields, and filtering high-risk hypertension records.
@@ -163,6 +163,7 @@ Day 51 is complete. Phase 6 has begun with PEFT and LoRA math, comparing full fi
 - `day49_rag_llm_integration.py` for streaming a local MLX LLM answer from retrieved Chroma context and a citation-aware RAG prompt.
 - `day50_rag_assistant.py` for packaging retrieval, prompt construction, and MLX generation into an interactive local clinical RAG assistant.
 - `day51_lora_math.py` for comparing full fine-tuning parameters with low-rank LoRA adapter parameters.
+- `day52_dataset_prep.py` for generating MLX LoRA training and validation JSONL files from casual-to-clinical instruction pairs.
 - `clinical_guidelines.txt` as the Day 41 sample clinical protocol used by the ingestion pipeline.
 - `patient_discharge.pdf` as the Day 42 sample two-page discharge summary used by the PDF parser.
 - `Figure_1.png` as the Day 9 EDA dashboard image with an age histogram, BMI/BP scatter plot, and correlation heatmap.
@@ -175,11 +176,12 @@ Day 51 is complete. Phase 6 has begun with PEFT and LoRA math, comparing full fi
 - `YOLO_V8.png` as the Day 32 YOLOv8 object-detection visualization artifact.
 - `healthcare_dataset.csv` as the local source dataset used by the Day 5 and Day 6 scripts.
 - `cleaned_healthcare_data.csv` as the cleaned Day 6 output dataset with serialized patient profiles.
-- `requirements.txt` with the Day 1 through Day 51 Python dependencies.
+- `requirements.txt` with the Day 1 through Day 52 Python dependencies.
 - `clinical_vector_db/` as a local ignored ChromaDB runtime artifact generated by the Day 30 script.
 - `clinical_rag_db/` as a local ignored ChromaDB runtime artifact generated by the Day 45 through Day 50 RAG database scripts.
 - `yolov8n.pt` and `sample_vision.jpg` as ignored runtime artifacts generated by the Day 32 script.
 - `mlx_model/` as an ignored local MLX runtime artifact generated by the Day 36 quantization script.
+- `lora_dataset/` as an ignored local dataset artifact generated by the Day 52 LoRA dataset preparation script.
 
 ## 📂 Project Highlights
 
@@ -1121,6 +1123,22 @@ python day51_lora_math.py
 
 ---
 
+### 📝 LoRA Dataset Preparation (`day52_dataset_prep.py`)
+
+Builds a small high-quality instruction dataset for medical terminology adaptation. The script converts casual doctor-note phrasing into formal clinical language, wraps each example in chat-style `system`, `user`, and `assistant` messages, then writes MLX-compatible `train.jsonl` and `valid.jsonl` files.
+
+```bash
+python day52_dataset_prep.py
+# --- Day 52: Preparing the LoRA Fine-Tuning Dataset ---
+#
+# Total raw examples created: 12
+# Training set size: 10 examples
+# Validation set size: 2 examples
+# SUCCESS: Datasets generated in the 'lora_dataset' folder!
+```
+
+---
+
 ## 💻 Local AI Execution & Validation
 
 ```bash
@@ -1128,7 +1146,7 @@ python day51_lora_math.py
 python3 -m venv .venv
 source .venv/bin/activate
 
-# 2. Install Day 1 through Day 51 dependencies
+# 2. Install Day 1 through Day 52 dependencies
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 
@@ -1287,6 +1305,9 @@ python day50_rag_assistant.py
 
 # 53. Run LoRA parameter-efficiency math
 python day51_lora_math.py
+
+# 54. Generate the MLX LoRA instruction dataset
+python day52_dataset_prep.py
 
 # Verify clean git tracking (ignoring .venv)
 git status
