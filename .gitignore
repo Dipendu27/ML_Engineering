@@ -6,3 +6,4 @@ clinical_vector_db/
 yolov8n.pt
 sample_vision.jpg
 mlx_model/
+clinical_rag_db/
