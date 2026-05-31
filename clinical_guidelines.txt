@@ -1,0 +1,7 @@
+CLINICAL PROTOCOL: HYPERTENSION MANAGEMENT
+Date: 2026-05-31
+Department: Cardiology
+
+For patients presenting with Stage 2 Hypertension (blood pressure > 140/90 mmHg), the first line of pharmacological treatment should include an ACE inhibitor (e.g., Lisinopril) or an Angiotensin II Receptor Blocker (ARB) such as Losartan.
+
+If the patient is over 60 years of age, calcium channel blockers (e.g., Amlodipine) are preferred due to increased efficacy in older populations. Patient follow-up should be scheduled exactly 14 days after initial medication administration to monitor renal function and potassium levels.
